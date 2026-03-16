@@ -5,6 +5,8 @@ class AuthService {
   static final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  static Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
+
   static User? get currentUser => _firebaseAuth.currentUser;
 
   static Future<String?> get idToken async {
