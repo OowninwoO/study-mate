@@ -11,6 +11,8 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: AppIconTextButton(
+            bgColor: const Color(0xFFF2F2F2),
+            fgColor: const Color(0xFF1F1F1F),
             icon: Image.asset(
               'assets/icons/google_logo.png',
               width: 20,
