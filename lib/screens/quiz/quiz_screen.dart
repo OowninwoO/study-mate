@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:study_mate/widgets/buttons/app_icon_button.dart';
+import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
+import 'package:study_mate/widgets/buttons/app_text_button.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -19,76 +22,14 @@ class _QuizScreenState extends State<QuizScreen> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 44,
-                          height: 44,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFFFFF),
-                            borderRadius: BorderRadius.circular(14),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color(0x14000000),
-                                blurRadius: 16,
-                                offset: Offset(0, 6),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            size: 18,
-                            color: Color(0xFF111111),
-                          ),
-                        ),
-                        const Spacer(),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 10,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFFFFF),
-                            borderRadius: BorderRadius.circular(14),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color(0x12000000),
-                                blurRadius: 16,
-                                offset: Offset(0, 6),
-                              ),
-                            ],
-                          ),
-                          child: const Row(
-                            children: [
-                              Icon(
-                                Icons.auto_awesome_rounded,
-                                size: 16,
-                                color: Color(0xFF6C63FF),
-                              ),
-                              SizedBox(width: 6),
-                              Text(
-                                'AI Quiz',
-                                style: TextStyle(
-                                  color: Color(0xFF111111),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 24),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(28),
+                        borderRadius: BorderRadius.circular(36),
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
@@ -98,89 +39,64 @@ class _QuizScreenState extends State<QuizScreen> {
                             Color(0xFFA58BFF),
                           ],
                         ),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x336C63FF),
-                            blurRadius: 28,
-                            offset: Offset(0, 14),
-                          ),
-                        ],
                       ),
-                      child: Column(
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: 52,
-                            height: 52,
-                            decoration: BoxDecoration(
-                              color: const Color(0x26FFFFFF),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: const Icon(
-                              Icons.picture_as_pdf_rounded,
-                              color: Color(0xFFFFFFFF),
-                              size: 28,
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          const Text(
-                            'PDF로 바로\n퀴즈 만들기',
-                            style: TextStyle(
-                              color: Color(0xFFFFFFFF),
-                              fontSize: 30,
-                              fontWeight: FontWeight.w800,
-                              height: 1.2,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          const Text(
-                            '강의자료, 요약본, 교재 PDF를 업로드하면\n핵심 내용을 바탕으로 문제를 생성해드려요.',
-                            style: TextStyle(
-                              color: Color(0xE6FFFFFF),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              height: 1.5,
-                            ),
-                          ),
-                          const SizedBox(height: 18),
                           Row(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 8,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: const Color(0x22FFFFFF),
-                                  borderRadius: BorderRadius.circular(999),
-                                ),
-                                child: const Text(
-                                  'PDF only',
-                                  style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                              AppIconButton(
+                                icon: Icon(
+                                  Icons.picture_as_pdf_rounded,
+                                  color: Color(0xFF6C63FF),
                                 ),
                               ),
-                              const SizedBox(width: 8),
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 8,
+                              SizedBox(width: 4),
+                              AppIconTextButton(
+                                icon: Icon(
+                                  Icons.auto_awesome_rounded,
+                                  color: Color(0xFF6C63FF),
                                 ),
-                                decoration: BoxDecoration(
-                                  color: const Color(0x22FFFFFF),
-                                  borderRadius: BorderRadius.circular(999),
-                                ),
-                                child: const Text(
-                                  '빠른 문제 생성',
-                                  style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
+                                text: 'AI Quiz',
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 12),
+                          Text(
+                            'PDF로 바로\n'
+                            '퀴즈 만들기',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          SizedBox(height: 12),
+                          Text(
+                            '강의자료, 요약본, 교재 PDF를 업로드하면\n'
+                            '핵심 내용을 바탕으로 문제를 생성해드려요.',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(height: 12),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              AppTextButton(
+                                bgColor: Colors.black87,
+                                fgColor: Colors.white,
+                                text: 'PDF only',
+                              ),
+                              SizedBox(width: 8),
+                              AppTextButton(
+                                bgColor: Colors.black87,
+                                fgColor: Colors.white,
+                                text: '빠른 문제 생성',
                               ),
                             ],
                           ),

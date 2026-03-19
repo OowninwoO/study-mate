@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
-class AppIconTextButton extends StatelessWidget {
+class AppTextButton extends StatelessWidget {
   final double? width;
   final Color? bgColor;
   final Color? fgColor;
-  final Widget icon;
   final String text;
   final VoidCallback? onPressed;
 
-  const AppIconTextButton({
+  const AppTextButton({
     super.key,
     this.width,
     this.bgColor,
     this.fgColor,
-    required this.icon,
     required this.text,
     this.onPressed,
   });
@@ -22,7 +20,7 @@ class AppIconTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
-      child: FilledButton.icon(
+      child: FilledButton(
         style: FilledButton.styleFrom(
           backgroundColor: bgColor ?? Colors.white,
           foregroundColor: fgColor ?? Colors.black,
@@ -33,9 +31,8 @@ class AppIconTextButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        icon: icon,
-        label: Text(text),
         onPressed: onPressed,
+        child: Text(text),
       ),
     );
   }
