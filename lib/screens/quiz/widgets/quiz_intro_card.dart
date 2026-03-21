@@ -27,10 +27,8 @@ class QuizIntroCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               AppIconButton(
-                icon: Icon(
-                  Icons.picture_as_pdf_rounded,
-                  color: Color(0xFF6C63FF),
-                ),
+                icon: Icons.picture_as_pdf_rounded,
+                iconColor: Color(0xFF6C63FF),
               ),
               SizedBox(width: 4),
               AppIconTextButton(
