@@ -13,14 +13,15 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF4F6FB),
-      body: SafeArea(
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
         child: Column(
           children: [
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const QuizIntroCard(),
@@ -28,21 +29,12 @@ class _QuizScreenState extends State<QuizScreen> {
                     const Text(
                       '문서 업로드',
                       style: TextStyle(
-                        color: Color(0xFF111111),
+                        color: Colors.black,
                         fontSize: 22,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'PDF 파일을 선택해서 퀴즈 생성을 시작해보세요.',
-                      style: TextStyle(
-                        color: Color(0xFF6B7280),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 18),
+                    const SizedBox(height: 12),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -120,14 +112,6 @@ class _QuizScreenState extends State<QuizScreen> {
                           ],
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        _InfoChip(label: '지원 형식', value: 'PDF'),
-                        const SizedBox(width: 10),
-                        _InfoChip(label: '추천', value: '강의자료'),
-                      ],
                     ),
                     const SizedBox(height: 20),
                     if (selectedPdfName != null)
@@ -315,46 +299,6 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _InfoChip extends StatelessWidget {
-  final String label;
-  final String value;
-
-  const _InfoChip({required this.label, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFFFFF),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE8EAF2)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            '$label ',
-            style: const TextStyle(
-              color: Color(0xFF6B7280),
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          Text(
-            value,
-            style: const TextStyle(
-              color: Color(0xFF111111),
-              fontSize: 12,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-        ],
       ),
     );
   }
