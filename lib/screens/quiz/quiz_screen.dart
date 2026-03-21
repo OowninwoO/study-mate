@@ -17,20 +17,52 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const QuizIntroCard(),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const QuizIntroCard(),
+                  const SizedBox(height: 24),
+                  const Text(
+                    '문서 업로드',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  AppListTile(
+                    color: Colors.white,
+                    leading: AppIconButton(
+                      bgColor: const Color(0xFFF1EEFF),
+                      icon: Icons.upload_file_rounded,
+                      iconColor: const Color(0xFF6C63FF),
+                      iconSize: 30,
+                    ),
+                    title: 'PDF 업로드',
+                    subtitle: '파일을 선택해서 문제 생성을 준비하세요',
+                    trailing: AppIconButton(
+                      bgColor: Colors.black,
+                      icon: Icons.add_rounded,
+                      iconColor: Colors.white,
+                      iconSize: 24,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        selectedPdfName ??= '새로운_학습자료.pdf';
+                      });
+                    },
+                  ),
+                  if (selectedPdfName != null) ...[
                     const SizedBox(height: 24),
                     const Text(
-                      '문서 업로드',
+                      '업로드한 PDF',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 22,
@@ -41,163 +73,32 @@ class _QuizScreenState extends State<QuizScreen> {
                     AppListTile(
                       color: Colors.white,
                       leading: AppIconButton(
-                        bgColor: const Color(0xFFF1EEFF),
-                        icon: Icons.upload_file_rounded,
-                        iconColor: const Color(0xFF6C63FF),
+                        bgColor: const Color(0xFFFFF1F1),
+                        icon: Icons.picture_as_pdf_rounded,
+                        iconColor: const Color(0xFFFF5A5F),
                         iconSize: 30,
                       ),
-                      title: 'PDF 업로드',
-                      subtitle: '파일을 선택해서 문제 생성을 준비하세요',
+                      title: selectedPdfName!,
                       trailing: AppIconButton(
                         bgColor: Colors.black,
-                        icon: Icons.add_rounded,
+                        icon: Icons.close_rounded,
                         iconColor: Colors.white,
                         iconSize: 24,
                       ),
                       onTap: () {
                         setState(() {
-                          selectedPdfName ??= '새로운_학습자료.pdf';
+                          selectedPdfName = null;
                         });
                       },
                     ),
-                    const SizedBox(height: 20),
-                    if (selectedPdfName != null)
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(18),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFFFFF),
-                          borderRadius: BorderRadius.circular(24),
-                          border: Border.all(
-                            color: const Color(0xFFE8EAF2),
-                            width: 1,
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x0D000000),
-                              blurRadius: 18,
-                              offset: Offset(0, 8),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 56,
-                              height: 56,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFFFF1F1),
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                              child: const Icon(
-                                Icons.picture_as_pdf_rounded,
-                                color: Color(0xFFFF5A5F),
-                                size: 30,
-                              ),
-                            ),
-                            const SizedBox(width: 14),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    selectedPdfName!,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      color: Color(0xFF111111),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                          vertical: 6,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFFF3F4F8),
-                                          borderRadius: BorderRadius.circular(
-                                            999,
-                                          ),
-                                        ),
-                                        child: const Text(
-                                          'PDF',
-                                          style: TextStyle(
-                                            color: Color(0xFF4B5563),
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                          vertical: 6,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFFEAFBF1),
-                                          borderRadius: BorderRadius.circular(
-                                            999,
-                                          ),
-                                        ),
-                                        child: const Row(
-                                          children: [
-                                            Icon(
-                                              Icons.check_circle_rounded,
-                                              size: 13,
-                                              color: Color(0xFF22A06B),
-                                            ),
-                                            SizedBox(width: 4),
-                                            Text(
-                                              '선택 완료',
-                                              style: TextStyle(
-                                                color: Color(0xFF22A06B),
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.w800,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectedPdfName = null;
-                                });
-                              },
-                              child: Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFF4F6FB),
-                                  borderRadius: BorderRadius.circular(14),
-                                ),
-                                child: const Icon(
-                                  Icons.close_rounded,
-                                  color: Color(0xFF667085),
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                   ],
-                ),
+                ],
               ),
             ),
-            AppIconTextButton(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: AppIconTextButton(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               bgColor: Colors.black,
@@ -210,8 +111,8 @@ class _QuizScreenState extends State<QuizScreen> {
               textWeight: FontWeight.w800,
               onPressed: () {},
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
