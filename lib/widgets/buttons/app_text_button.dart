@@ -3,16 +3,20 @@ import 'package:flutter/material.dart';
 class AppTextButton extends StatelessWidget {
   final double? width;
   final Color? bgColor;
-  final Color? fgColor;
   final String text;
+  final Color? textColor;
+  final double? textSize;
+  final FontWeight? textWeight;
   final VoidCallback? onPressed;
 
   const AppTextButton({
     super.key,
     this.width,
     this.bgColor,
-    this.fgColor,
     required this.text,
+    this.textColor,
+    this.textSize,
+    this.textWeight,
     this.onPressed,
   });
 
@@ -23,9 +27,10 @@ class AppTextButton extends StatelessWidget {
       child: FilledButton(
         style: FilledButton.styleFrom(
           backgroundColor: bgColor ?? Colors.white,
-          foregroundColor: fgColor ?? Colors.black,
+          foregroundColor: textColor ?? Colors.black,
           disabledBackgroundColor: bgColor ?? Colors.white,
-          disabledForegroundColor: fgColor ?? Colors.black,
+          disabledForegroundColor: textColor ?? Colors.black,
+          textStyle: TextStyle(fontSize: textSize, fontWeight: textWeight),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),

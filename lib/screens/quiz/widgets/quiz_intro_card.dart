@@ -66,14 +66,14 @@ class QuizIntroCard extends StatelessWidget {
             children: [
               AppTextButton(
                 bgColor: Colors.black87,
-                fgColor: Colors.white,
                 text: 'PDF only',
+                textColor: Colors.white,
               ),
               SizedBox(width: 8),
               AppTextButton(
                 bgColor: Colors.black87,
-                fgColor: Colors.white,
                 text: '빠른 문제 생성',
+                textColor: Colors.white,
               ),
             ],
           ),
