@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_intro_card.dart';
+import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
+import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -36,83 +38,27 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    GestureDetector(
+                    AppListTile(
+                      tileColor: Colors.white,
+                      leading: AppIconButton(
+                        bgColor: const Color(0xFFF1EEFF),
+                        icon: Icons.upload_file_rounded,
+                        iconColor: const Color(0xFF6C63FF),
+                        iconSize: 30,
+                      ),
+                      title: 'PDF 업로드',
+                      subtitle: '파일을 선택해서 문제 생성을 준비하세요',
+                      trailing: AppIconButton(
+                        bgColor: Colors.black,
+                        icon: Icons.add_rounded,
+                        iconColor: Colors.white,
+                        iconSize: 24,
+                      ),
                       onTap: () {
                         setState(() {
                           selectedPdfName ??= '새로운_학습자료.pdf';
                         });
                       },
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFFFFF),
-                          borderRadius: BorderRadius.circular(24),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x10000000),
-                              blurRadius: 24,
-                              offset: Offset(0, 10),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 64,
-                              height: 64,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFF1EEFF),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: const Icon(
-                                Icons.upload_file_rounded,
-                                color: Color(0xFF6C63FF),
-                                size: 30,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            const Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'PDF 업로드',
-                                    style: TextStyle(
-                                      color: Color(0xFF111111),
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                  SizedBox(height: 6),
-                                  Text(
-                                    '파일을 선택해서 문제 생성을 준비하세요',
-                                    style: TextStyle(
-                                      color: Color(0xFF6B7280),
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.4,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: 42,
-                              height: 42,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF111111),
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                              child: const Icon(
-                                Icons.add_rounded,
-                                color: Color(0xFFFFFFFF),
-                                size: 24,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
                     const SizedBox(height: 20),
                     if (selectedPdfName != null)
