@@ -39,7 +39,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     ),
                     const SizedBox(height: 12),
                     AppListTile(
-                      tileColor: Colors.white,
+                      color: Colors.white,
                       leading: AppIconButton(
                         bgColor: const Color(0xFFF1EEFF),
                         icon: Icons.upload_file_rounded,
