@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_intro_card.dart';
+import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -250,52 +251,17 @@ class _QuizScreenState extends State<QuizScreen> {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.fromLTRB(20, 14, 20, 20),
-              decoration: const BoxDecoration(
-                color: Color(0xFFF4F6FB),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x12000000),
-                    blurRadius: 20,
-                    offset: Offset(0, -6),
-                  ),
-                ],
-              ),
-              child: SizedBox(
-                width: double.infinity,
-                height: 60,
-                child: ElevatedButton(
-                  onPressed: selectedPdfName == null ? null : () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF111111),
-                    disabledBackgroundColor: const Color(0xFFD4D9E2),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.auto_awesome_rounded,
-                        color: Color(0xFFFFFFFF),
-                        size: 18,
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        '문제 생성하기',
-                        style: TextStyle(
-                          color: Color(0xFFFFFFFF),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            AppIconTextButton(
+              width: double.infinity,
+              bgColor: Colors.black,
+              icon: Icons.auto_awesome_rounded,
+              iconColor: const Color(0xFF6C63FF),
+              iconSize: 24,
+              text: '문제 생성하기',
+              textColor: Colors.white,
+              textSize: 16,
+              textWeight: FontWeight.w800,
+              onPressed: () {},
             ),
           ],
         ),
