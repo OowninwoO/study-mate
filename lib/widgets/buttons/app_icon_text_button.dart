@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppIconTextButton extends StatelessWidget {
   final double? width;
+  final EdgeInsetsGeometry? padding;
   final Color? bgColor;
   final IconData icon;
   final Color? iconColor;
@@ -15,6 +16,7 @@ class AppIconTextButton extends StatelessWidget {
   const AppIconTextButton({
     super.key,
     this.width,
+    this.padding,
     this.bgColor,
     required this.icon,
     this.iconColor,
@@ -39,7 +41,9 @@ class AppIconTextButton extends StatelessWidget {
           iconColor: iconColor ?? textColor ?? Colors.black,
           iconSize: iconSize,
           textStyle: TextStyle(fontSize: textSize, fontWeight: textWeight),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          padding:
+              padding ??
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
