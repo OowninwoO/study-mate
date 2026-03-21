@@ -253,6 +253,7 @@ class _QuizScreenState extends State<QuizScreen> {
             ),
             AppIconTextButton(
               width: double.infinity,
+              padding: const EdgeInsets.all(16),
               bgColor: Colors.black,
               icon: Icons.auto_awesome_rounded,
               iconColor: const Color(0xFF6C63FF),
