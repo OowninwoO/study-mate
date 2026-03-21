@@ -32,10 +32,8 @@ class QuizIntroCard extends StatelessWidget {
               ),
               SizedBox(width: 4),
               AppIconTextButton(
-                icon: Icon(
-                  Icons.auto_awesome_rounded,
-                  color: Color(0xFF6C63FF),
-                ),
+                icon: Icons.auto_awesome_rounded,
+                iconColor: Color(0xFF6C63FF),
                 text: 'AI Quiz',
               ),
             ],
