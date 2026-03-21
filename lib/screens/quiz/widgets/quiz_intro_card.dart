@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
 
@@ -23,20 +22,12 @@ class QuizIntroCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AppIconButton(
-                icon: Icons.picture_as_pdf_rounded,
-                iconColor: Color(0xFF6C63FF),
-              ),
-              SizedBox(width: 4),
-              AppIconTextButton(
-                icon: Icons.auto_awesome_rounded,
-                iconColor: Color(0xFF6C63FF),
-                text: 'AI Quiz',
-              ),
-            ],
+          AppIconTextButton(
+            icon: Icons.auto_awesome_rounded,
+            iconColor: Color(0xFF6C63FF),
+            text: 'AI Quiz',
+            textSize: 16,
+            textWeight: FontWeight.w700,
           ),
           SizedBox(height: 12),
           Text(
@@ -66,18 +57,21 @@ class QuizIntroCard extends StatelessWidget {
                 bgColor: Colors.black87,
                 text: 'PDF',
                 textColor: Colors.white,
+                textWeight: FontWeight.w600,
               ),
               SizedBox(width: 8),
               AppTextButton(
                 bgColor: Colors.black87,
                 text: '강의자료',
                 textColor: Colors.white,
+                textWeight: FontWeight.w600,
               ),
               SizedBox(width: 8),
               AppTextButton(
                 bgColor: Colors.black87,
                 text: '빠른 생성',
                 textColor: Colors.white,
+                textWeight: FontWeight.w600,
               ),
             ],
           ),
