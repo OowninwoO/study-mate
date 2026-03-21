@@ -6,6 +6,7 @@ class AppListTile extends StatelessWidget {
   final String title;
   final String? subtitle;
   final Widget? trailing;
+  final VoidCallback? onTap;
 
   const AppListTile({
     super.key,
@@ -14,6 +15,7 @@ class AppListTile extends StatelessWidget {
     required this.title,
     this.subtitle,
     this.trailing,
+    this.onTap,
   });
 
   @override
@@ -24,6 +26,7 @@ class AppListTile extends StatelessWidget {
       title: Text(title),
       subtitle: subtitle != null ? Text(subtitle!) : null,
       trailing: trailing,
+      onTap: onTap,
     );
   }
 }
