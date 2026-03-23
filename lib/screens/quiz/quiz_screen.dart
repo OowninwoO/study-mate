@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_intro_card.dart';
+import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
@@ -40,9 +41,9 @@ class _QuizScreenState extends State<QuizScreen> {
                   AppListTile(
                     color: Colors.white,
                     leading: AppIconButton(
-                      bgColor: const Color(0xFFF1EEFF),
+                      bgColor: AppColors.primary.withValues(alpha: 0.1),
                       icon: Icons.upload_file_rounded,
-                      iconColor: const Color(0xFF6C63FF),
+                      iconColor: AppColors.primary,
                       iconSize: 30,
                     ),
                     title: 'PDF 업로드',
@@ -73,9 +74,9 @@ class _QuizScreenState extends State<QuizScreen> {
                     AppListTile(
                       color: Colors.white,
                       leading: AppIconButton(
-                        bgColor: const Color(0xFFFFF1F1),
+                        bgColor: Colors.red.withValues(alpha: 0.1),
                         icon: Icons.picture_as_pdf_rounded,
-                        iconColor: const Color(0xFFFF5A5F),
+                        iconColor: Colors.red,
                         iconSize: 30,
                       ),
                       title: selectedPdfName!,
@@ -103,7 +104,7 @@ class _QuizScreenState extends State<QuizScreen> {
               padding: const EdgeInsets.all(16),
               bgColor: Colors.black,
               icon: Icons.auto_awesome_rounded,
-              iconColor: const Color(0xFF6C63FF),
+              iconColor: AppColors.primary,
               iconSize: 24,
               text: '문제 생성하기',
               textColor: Colors.white,

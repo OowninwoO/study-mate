@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
 
@@ -12,10 +13,14 @@ class QuizIntroCard extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(36),
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF6C63FF), Color(0xFF8E7BFF), Color(0xFFA58BFF)],
+          colors: [
+            AppColors.primary,
+            AppColors.primary.withValues(alpha: 0.8),
+            AppColors.primary.withValues(alpha: 0.6),
+          ],
         ),
       ),
       child: const Column(
@@ -24,7 +29,7 @@ class QuizIntroCard extends StatelessWidget {
         children: [
           AppIconTextButton(
             icon: Icons.auto_awesome_rounded,
-            iconColor: Color(0xFF6C63FF),
+            iconColor: AppColors.primary,
             text: 'AI Quiz',
             textSize: 16,
             textWeight: FontWeight.w700,
