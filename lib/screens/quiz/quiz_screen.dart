@@ -1,5 +1,7 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_intro_card.dart';
+import 'package:study_mate/services/pdf_picker_service.dart';
 import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
@@ -13,11 +15,11 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  String? selectedPdfName = '경제학개론_중간정리.pdf';
+  PlatformFile? selectedPdf;
 
   @override
   Widget build(BuildContext context) {
-    final canGenerate = selectedPdfName != null;
+    final canGenerate = selectedPdf != null;
 
     return SafeArea(
       child: Column(
@@ -56,13 +58,16 @@ class _QuizScreenState extends State<QuizScreen> {
                       iconColor: Colors.white,
                       iconSize: 24,
                     ),
-                    onTap: () {
+                    onTap: () async {
+                      final pdf = await PdfPickerService.pickPdf();
+                      if (pdf == null) return;
+
                       setState(() {
-                        selectedPdfName ??= '새로운_학습자료.pdf';
+                        selectedPdf = pdf;
                       });
                     },
                   ),
-                  if (selectedPdfName != null) ...[
+                  if (selectedPdf != null) ...[
                     const SizedBox(height: 24),
                     const Text(
                       '업로드한 PDF',
@@ -81,7 +86,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         iconColor: Colors.red,
                         iconSize: 30,
                       ),
-                      title: selectedPdfName!,
+                      title: selectedPdf!.name,
                       trailing: AppIconButton(
                         bgColor: Colors.black,
                         icon: Icons.close_rounded,
@@ -90,7 +95,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                       onTap: () {
                         setState(() {
-                          selectedPdfName = null;
+                          selectedPdf = null;
                         });
                       },
                     ),
@@ -112,7 +117,18 @@ class _QuizScreenState extends State<QuizScreen> {
               textColor: Colors.white,
               textSize: 16,
               textWeight: FontWeight.w800,
-              onPressed: canGenerate ? () {} : null,
+              onPressed: canGenerate
+                  ? () async {
+                      final pdf = selectedPdf;
+                      if (pdf == null) return;
+
+                      final pdfName = pdf.name;
+                      final pdfPath = pdf.path;
+
+                      print('pdfName=$pdfName');
+                      print('pdfPath=$pdfPath');
+                    }
+                  : null,
             ),
           ),
         ],
