@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_mate/theme/app_colors.dart';
 
 class AppListTile extends StatelessWidget {
   final Color? color;
@@ -31,7 +32,7 @@ class AppListTile extends StatelessWidget {
       color: color ?? Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius ?? BorderRadius.circular(24),
-        side: borderSide ?? const BorderSide(color: Colors.grey),
+        side: borderSide ?? const BorderSide(color: AppColors.divider),
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
