@@ -17,6 +17,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final canGenerate = selectedPdfName != null;
+
     return SafeArea(
       child: Column(
         children: [
@@ -102,15 +104,15 @@ class _QuizScreenState extends State<QuizScreen> {
             child: AppIconTextButton(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
-              bgColor: Colors.black,
+              bgColor: canGenerate ? Colors.black : Colors.grey,
               icon: Icons.auto_awesome_rounded,
-              iconColor: AppColors.primary,
+              iconColor: canGenerate ? AppColors.primary : Colors.white,
               iconSize: 24,
               text: '문제 생성하기',
               textColor: Colors.white,
               textSize: 16,
               textWeight: FontWeight.w800,
-              onPressed: () {},
+              onPressed: canGenerate ? () {} : null,
             ),
           ),
         ],
