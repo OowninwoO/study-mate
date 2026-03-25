@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:study_mate/api/main/quiz_api.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_intro_card.dart';
 import 'package:study_mate/services/pdf_picker_service.dart';
 import 'package:study_mate/theme/app_colors.dart';
@@ -122,11 +123,11 @@ class _QuizScreenState extends State<QuizScreen> {
                       final pdf = selectedPdf;
                       if (pdf == null) return;
 
-                      final pdfName = pdf.name;
-                      final pdfPath = pdf.path;
-
-                      print('pdfName=$pdfName');
-                      print('pdfPath=$pdfPath');
+                      try {
+                        await QuizApi.uploadPdf(pdf: pdf);
+                      } catch (e) {
+                        print(e);
+                      }
                     }
                   : null,
             ),
