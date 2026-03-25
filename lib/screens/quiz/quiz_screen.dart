@@ -18,10 +18,16 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   PlatformFile? selectedPdf;
 
+  Future<void> _generateQuiz() async {
+    try {
+      await QuizApi.uploadPdf(pdf: selectedPdf!);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final canGenerate = selectedPdf != null;
-
     return SafeArea(
       child: Column(
         children: [
@@ -110,26 +116,15 @@ class _QuizScreenState extends State<QuizScreen> {
             child: AppIconTextButton(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
-              bgColor: canGenerate ? Colors.black : Colors.grey,
+              bgColor: selectedPdf != null ? Colors.black : Colors.grey,
               icon: Icons.auto_awesome_rounded,
-              iconColor: canGenerate ? AppColors.primary : Colors.white,
+              iconColor: selectedPdf != null ? AppColors.primary : Colors.white,
               iconSize: 24,
               text: '문제 생성하기',
               textColor: Colors.white,
               textSize: 16,
               textWeight: FontWeight.w800,
-              onPressed: canGenerate
-                  ? () async {
-                      final pdf = selectedPdf;
-                      if (pdf == null) return;
-
-                      try {
-                        await QuizApi.uploadPdf(pdf: pdf);
-                      } catch (e) {
-                        print(e);
-                      }
-                    }
-                  : null,
+              onPressed: selectedPdf != null ? _generateQuiz : null,
             ),
           ),
         ],
