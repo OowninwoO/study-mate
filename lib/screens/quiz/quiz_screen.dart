@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:study_mate/api/main/quiz_api.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_intro_card.dart';
 import 'package:study_mate/services/pdf_picker_service.dart';
@@ -20,10 +21,14 @@ class _QuizScreenState extends State<QuizScreen> {
   PlatformFile? selectedPdf;
 
   Future<void> _generateQuiz() async {
+    context.loaderOverlay.show();
+
     try {
       await QuizApi.uploadPdf(pdf: selectedPdf!);
     } catch (e) {
       LoggerUtil.e(e);
+    } finally {
+      context.loaderOverlay.hide();
     }
   }
 
