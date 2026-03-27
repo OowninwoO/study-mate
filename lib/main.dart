@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:study_mate/app_router.dart';
 import 'package:study_mate/firebase_options.dart';
 import 'package:study_mate/theme/app_theme.dart';
+import 'package:toastification/toastification.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +21,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: appRouter(), theme: AppTheme.light);
+    return ToastificationWrapper(
+      child: GlobalLoaderOverlay(
+        child: MaterialApp.router(
+          routerConfig: appRouter(),
+          theme: AppTheme.light,
+        ),
+      ),
+    );
   }
 }
