@@ -8,8 +8,8 @@ class MainDioClient {
           BaseOptions(
             baseUrl: dotenv.env['MAIN_API_BASE_URL']!,
             connectTimeout: const Duration(seconds: 10),
-            receiveTimeout: const Duration(seconds: 10),
-            sendTimeout: const Duration(seconds: 10),
+            sendTimeout: const Duration(minutes: 1),
+            receiveTimeout: const Duration(minutes: 1),
             headers: {'Content-Type': 'application/json'},
           ),
         )
