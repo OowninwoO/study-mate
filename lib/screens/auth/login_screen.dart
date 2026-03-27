@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_mate/services/auth_service.dart';
+import 'package:study_mate/utils/logger_util.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -30,7 +31,7 @@ class LoginScreen extends StatelessWidget {
               try {
                 await AuthService.signInWithGoogle();
               } catch (e) {
-                print(e);
+                LoggerUtil.e(e);
               }
             },
           ),

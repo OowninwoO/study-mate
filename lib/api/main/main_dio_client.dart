@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:study_mate/services/auth_service.dart';
+import 'package:study_mate/utils/logger_util.dart';
 
 class MainDioClient {
   static final Dio dio =
@@ -22,7 +23,7 @@ class MainDioClient {
               }
 
               final caller = options.extra['caller'] ?? 'unknown';
-              print(
+              LoggerUtil.d(
                 '[MAIN][REQ][$caller] ${options.method} ${options.baseUrl}${options.path}',
               );
 
@@ -31,13 +32,15 @@ class MainDioClient {
             onResponse: (response, handler) {
               final caller =
                   response.requestOptions.extra['caller'] ?? 'unknown';
-              print('[MAIN][RES][$caller] ${response.data}');
+              LoggerUtil.d('[MAIN][RES][$caller] ${response.data}');
 
               handler.next(response);
             },
             onError: (e, handler) {
               final caller = e.requestOptions.extra['caller'] ?? 'unknown';
-              print('[MAIN][ERR][$caller] ${e.response?.data ?? e.message}');
+              LoggerUtil.e(
+                '[MAIN][ERR][$caller] ${e.response?.data ?? e.message}',
+              );
 
               handler.next(e);
             },

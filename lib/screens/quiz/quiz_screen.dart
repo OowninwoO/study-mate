@@ -4,6 +4,7 @@ import 'package:study_mate/api/main/quiz_api.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_intro_card.dart';
 import 'package:study_mate/services/pdf_picker_service.dart';
 import 'package:study_mate/theme/app_colors.dart';
+import 'package:study_mate/utils/logger_util.dart';
 import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
@@ -22,7 +23,7 @@ class _QuizScreenState extends State<QuizScreen> {
     try {
       await QuizApi.uploadPdf(pdf: selectedPdf!);
     } catch (e) {
-      print(e);
+      LoggerUtil.e(e);
     }
   }
 
