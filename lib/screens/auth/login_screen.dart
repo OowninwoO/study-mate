@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:study_mate/services/auth_service.dart';
 import 'package:study_mate/utils/logger_util.dart';
 
@@ -28,10 +29,14 @@ class LoginScreen extends StatelessWidget {
             ),
             label: const Text('구글로 로그인'),
             onPressed: () async {
+              context.loaderOverlay.show();
+
               try {
                 await AuthService.signInWithGoogle();
               } catch (e) {
                 LoggerUtil.e(e);
+              } finally {
+                context.loaderOverlay.hide();
               }
             },
           ),
