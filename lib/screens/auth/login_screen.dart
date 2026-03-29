@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:study_mate/services/auth_service.dart';
 import 'package:study_mate/utils/logger_util.dart';
+import 'package:study_mate/utils/toast_util.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -33,8 +34,10 @@ class LoginScreen extends StatelessWidget {
 
               try {
                 await AuthService.signInWithGoogle();
+                ToastUtil.success('로그인에 성공했습니다.');
               } catch (e) {
                 LoggerUtil.e(e);
+                ToastUtil.error('로그인에 실패했습니다.');
               } finally {
                 context.loaderOverlay.hide();
               }
