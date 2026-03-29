@@ -7,7 +7,7 @@ class ToastUtil {
   static void success(String title) {
     toastification.show(
       type: ToastificationType.success,
-      style: ToastificationStyle.simple,
+      style: ToastificationStyle.fillColored,
       autoCloseDuration: const Duration(seconds: 3),
       alignment: Alignment.bottomCenter,
       showIcon: false,
@@ -15,14 +15,21 @@ class ToastUtil {
       showProgressBar: false,
       dragToClose: true,
       closeOnClick: true,
-      title: Text(title, style: const TextStyle(color: Colors.green)),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 
   static void error(String title) {
     toastification.show(
       type: ToastificationType.error,
-      style: ToastificationStyle.simple,
+      style: ToastificationStyle.fillColored,
       autoCloseDuration: const Duration(seconds: 3),
       alignment: Alignment.bottomCenter,
       showIcon: false,
@@ -30,7 +37,14 @@ class ToastUtil {
       showProgressBar: false,
       dragToClose: true,
       closeOnClick: true,
-      title: Text(title, style: const TextStyle(color: Colors.red)),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 }
