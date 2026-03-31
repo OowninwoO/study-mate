@@ -36,9 +36,9 @@ class HomeScreen extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    AppColors.primary,
-                    AppColors.primary.withValues(alpha: 0.8),
-                    AppColors.primary.withValues(alpha: 0.6),
+                    AppColors.secondary,
+                    AppColors.secondary.withValues(alpha: 0.8),
+                    AppColors.secondary.withValues(alpha: 0.6),
                   ],
                 ),
               ),
@@ -74,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                           title: '보관된 퀴즈',
                           subtitle: '${quizzes.length}개',
                           subtitleTextStyle: const TextStyle(
-                            color: Colors.deepPurple,
+                            color: Colors.blueAccent,
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                           ),
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                           title: '문제 수',
                           subtitle: '$totalQuestionCount문제',
                           subtitleTextStyle: const TextStyle(
-                            color: Colors.deepPurple,
+                            color: Colors.blueAccent,
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                           ),
@@ -119,9 +119,9 @@ class HomeScreen extends StatelessWidget {
                 return AppListTile(
                   color: Colors.white,
                   leading: AppIconButton(
-                    bgColor: AppColors.primary.withValues(alpha: 0.1),
+                    bgColor: AppColors.secondary.withValues(alpha: 0.1),
                     icon: Icons.description_rounded,
-                    iconColor: AppColors.primary,
+                    iconColor: AppColors.secondary,
                     iconSize: 30,
                   ),
                   title: quiz.title,
