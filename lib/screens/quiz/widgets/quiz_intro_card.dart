@@ -49,9 +49,9 @@ class QuizIntroCard extends StatelessWidget {
             '강의자료, 요약본, 교재 PDF를 업로드하면\n'
             '핵심 내용을 바탕으로 문제를 생성해드려요.',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 16,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
           ),
           SizedBox(height: 12),
