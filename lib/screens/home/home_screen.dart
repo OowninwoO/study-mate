@@ -76,6 +76,11 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.white,
                           title: '보관된 퀴즈',
                           subtitle: '${quizzes.length}개',
+                          subtitleTextStyle: const TextStyle(
+                            color: Colors.deepPurple,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 24),
@@ -84,6 +89,11 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.white,
                           title: '문제 수',
                           subtitle: '$totalQuestionCount문제',
+                          subtitleTextStyle: const TextStyle(
+                            color: Colors.deepPurple,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ],

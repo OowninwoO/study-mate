@@ -7,7 +7,9 @@ class AppListTile extends StatelessWidget {
   final BorderSide? borderSide;
   final Widget? leading;
   final String title;
+  final TextStyle? titleTextStyle;
   final String? subtitle;
+  final TextStyle? subtitleTextStyle;
   final Widget? trailing;
   final VoidCallback? onTap;
 
@@ -18,7 +20,9 @@ class AppListTile extends StatelessWidget {
     this.borderSide,
     this.leading,
     required this.title,
+    this.titleTextStyle,
     this.subtitle,
+    this.subtitleTextStyle,
     this.trailing,
     this.onTap,
   });
@@ -38,7 +42,9 @@ class AppListTile extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         leading: leading,
         title: Text(title),
+        titleTextStyle: titleTextStyle,
         subtitle: subtitle != null ? Text(subtitle!) : null,
+        subtitleTextStyle: subtitleTextStyle,
         trailing: trailing,
         onTap: onTap,
       ),
