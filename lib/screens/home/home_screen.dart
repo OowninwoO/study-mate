@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:study_mate/providers/quiz/quiz_set_list_provider.dart';
 import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final quizzes = [
-      _QuizItem(title: '자료구조 3주차.pdf', questionCount: 10, createdAt: '방금 생성됨'),
-      _QuizItem(title: '운영체제 정리본.pdf', questionCount: 10, createdAt: '오늘 생성됨'),
-    ];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final quizzes = ref.watch(quizSetListProvider);
 
     final totalQuestionCount = quizzes.fold(
       0,
-      (sum, quiz) => sum + quiz.questionCount,
+      (sum, quiz) => sum + quiz.quizzes.length,
     );
 
     return SafeArea(
@@ -124,8 +123,8 @@ class HomeScreen extends StatelessWidget {
                     iconColor: AppColors.secondary,
                     iconSize: 30,
                   ),
-                  title: quiz.title,
-                  subtitle: '${quiz.questionCount}문제 · ${quiz.createdAt}',
+                  title: quiz.sourceTitle,
+                  subtitle: '${quiz.quizzes.length}문제 · ${quiz.createdAt}',
                   trailing: AppTextButton(
                     bgColor: Colors.black,
                     text: '풀기',
@@ -141,16 +140,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class _QuizItem {
-  final String title;
-  final int questionCount;
-  final String createdAt;
-
-  const _QuizItem({
-    required this.title,
-    required this.questionCount,
-    required this.createdAt,
-  });
 }
