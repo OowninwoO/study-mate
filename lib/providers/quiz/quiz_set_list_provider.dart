@@ -23,8 +23,8 @@ class QuizSetList extends _$QuizSetList {
     try {
       final quizSet = await QuizApi.uploadPdf(pdf: pdf);
       state = AsyncData([quizSet, ...current]);
-    } catch (e) {
-      state = AsyncData(current);
+    } catch (e, st) {
+      state = AsyncError(e, st);
     }
   }
 
