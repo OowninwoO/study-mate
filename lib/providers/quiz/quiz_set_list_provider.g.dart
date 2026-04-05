@@ -13,7 +13,7 @@ part of 'quiz_set_list_provider.dart';
 const quizSetListProvider = QuizSetListProvider._();
 
 final class QuizSetListProvider
-    extends $AsyncNotifierProvider<QuizSetList, List<QuizSetModel>> {
+    extends $NotifierProvider<QuizSetList, List<QuizSetModel>> {
   const QuizSetListProvider._()
     : super(
         from: null,
@@ -31,23 +31,30 @@ final class QuizSetListProvider
   @$internal
   @override
   QuizSetList create() => QuizSetList();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<QuizSetModel> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<QuizSetModel>>(value),
+    );
+  }
 }
 
-String _$quizSetListHash() => r'58ea3cc518f5a93a7603cd6a3eb4f5b767e27671';
+String _$quizSetListHash() => r'd83daf2bb4824966667632a1d428538de4336935';
 
-abstract class _$QuizSetList extends $AsyncNotifier<List<QuizSetModel>> {
-  FutureOr<List<QuizSetModel>> build();
+abstract class _$QuizSetList extends $Notifier<List<QuizSetModel>> {
+  List<QuizSetModel> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref =
-        this.ref as $Ref<AsyncValue<List<QuizSetModel>>, List<QuizSetModel>>;
+    final ref = this.ref as $Ref<List<QuizSetModel>, List<QuizSetModel>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<List<QuizSetModel>>, List<QuizSetModel>>,
-              AsyncValue<List<QuizSetModel>>,
+              AnyNotifier<List<QuizSetModel>, List<QuizSetModel>>,
+              List<QuizSetModel>,
               Object?,
               Object?
             >;

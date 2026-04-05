@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:study_mate/api/main/quiz_api.dart';
@@ -10,36 +8,22 @@ part 'quiz_set_list_provider.g.dart';
 @riverpod
 class QuizSetList extends _$QuizSetList {
   @override
-  FutureOr<List<QuizSetModel>> build() {
+  List<QuizSetModel> build() {
     return [];
   }
 
   Future<void> generateQuiz(PlatformFile pdf) async {
-    final current = state.value;
-    if (current == null) return;
-
-    state = const AsyncLoading();
-
-    try {
-      final res = await QuizApi.uploadPdf(pdf: pdf);
-      final data = res['data'];
-      final quizSet = QuizSetModel.fromJson(data);
-      state = AsyncData([quizSet, ...current]);
-    } catch (e, st) {
-      state = AsyncError(e, st);
-    }
+    final res = await QuizApi.uploadPdf(pdf: pdf);
+    final data = res['data'];
+    final quizSet = QuizSetModel.fromJson(data);
+    state = [quizSet, ...state];
   }
 
   void removeQuizSet(QuizSetModel quizSet) {
-    final current = state.value;
-    if (current == null) return;
-
-    state = AsyncData(
-      current.where((e) => e.createdAt != quizSet.createdAt).toList(),
-    );
+    state = state.where((e) => e.createdAt != quizSet.createdAt).toList();
   }
 
   void clearQuizSets() {
-    state = const AsyncData([]);
+    state = [];
   }
 }
