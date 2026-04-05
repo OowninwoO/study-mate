@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:loader_overlay/loader_overlay.dart';
-import 'package:study_mate/api/main/quiz_api.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:study_mate/providers/quiz/quiz_set_list_provider.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_intro_card.dart';
 import 'package:study_mate/services/pdf_picker_service.dart';
 import 'package:study_mate/theme/app_colors.dart';
@@ -11,27 +11,23 @@ import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
-class QuizScreen extends StatefulWidget {
+class QuizScreen extends ConsumerStatefulWidget {
   const QuizScreen({super.key});
 
   @override
-  State<QuizScreen> createState() => _QuizScreenState();
+  ConsumerState<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _QuizScreenState extends ConsumerState<QuizScreen> {
   PlatformFile? selectedPdf;
 
   Future<void> _generateQuiz() async {
-    context.loaderOverlay.show();
-
     try {
-      await QuizApi.uploadPdf(pdf: selectedPdf!);
+      await ref.read(quizSetListProvider.notifier).generateQuiz(selectedPdf!);
       ToastUtil.success('문제 생성에 성공했습니다.');
     } catch (e) {
       LoggerUtil.e(e);
       ToastUtil.error('문제 생성에 실패했습니다.');
-    } finally {
-      context.loaderOverlay.hide();
     }
   }
 
