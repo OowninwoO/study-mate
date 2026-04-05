@@ -21,18 +21,13 @@ class QuizSetList extends _$QuizSetList {
     state = const AsyncLoading();
 
     try {
-      final quizSet = await QuizApi.uploadPdf(pdf: pdf);
+      final res = await QuizApi.uploadPdf(pdf: pdf);
+      final data = res['data'];
+      final quizSet = QuizSetModel.fromJson(data);
       state = AsyncData([quizSet, ...current]);
     } catch (e, st) {
       state = AsyncError(e, st);
     }
-  }
-
-  void addQuizSet(QuizSetModel quizSet) {
-    final current = state.value;
-    if (current == null) return;
-
-    state = AsyncData([quizSet, ...current]);
   }
 
   void removeQuizSet(QuizSetModel quizSet) {

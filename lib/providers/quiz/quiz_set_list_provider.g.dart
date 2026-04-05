@@ -33,7 +33,7 @@ final class QuizSetListProvider
   QuizSetList create() => QuizSetList();
 }
 
-String _$quizSetListHash() => r'409168e29631e7ae99801bc9d085c17c0ae1cb20';
+String _$quizSetListHash() => r'58ea3cc518f5a93a7603cd6a3eb4f5b767e27671';
 
 abstract class _$QuizSetList extends $AsyncNotifier<List<QuizSetModel>> {
   FutureOr<List<QuizSetModel>> build();
