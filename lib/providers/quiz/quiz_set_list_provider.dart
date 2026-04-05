@@ -5,7 +5,7 @@ import 'package:study_mate/models/quiz/quiz_set_model.dart';
 
 part 'quiz_set_list_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class QuizSetList extends _$QuizSetList {
   @override
   List<QuizSetModel> build() {

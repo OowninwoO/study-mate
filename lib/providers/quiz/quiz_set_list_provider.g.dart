@@ -20,7 +20,7 @@ final class QuizSetListProvider
         argument: null,
         retry: null,
         name: r'quizSetListProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -41,7 +41,7 @@ final class QuizSetListProvider
   }
 }
 
-String _$quizSetListHash() => r'd83daf2bb4824966667632a1d428538de4336935';
+String _$quizSetListHash() => r'0ce6188c0f56368367091b37c1527dd9bd15e1e0';
 
 abstract class _$QuizSetList extends $Notifier<List<QuizSetModel>> {
   List<QuizSetModel> build();
