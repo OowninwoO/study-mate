@@ -14,7 +14,15 @@ class QuizPlayScreen extends StatefulWidget {
 
 class _QuizPlayScreenState extends State<QuizPlayScreen> {
   final PageController _pageController = PageController();
+
   int currentIndex = 0;
+  late final List<int?> selectedAnswers;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedAnswers = List<int?>.filled(widget.quizSet.quizzes.length, null);
+  }
 
   @override
   void dispose() {
@@ -54,6 +62,7 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                   itemCount: quizzes.length,
                   itemBuilder: (context, index) {
                     final quiz = quizzes[index];
+                    final selectedOptionIndex = selectedAnswers[index];
 
                     return SingleChildScrollView(
                       child: Column(
@@ -85,9 +94,11 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                             itemCount: quiz.options.length,
                             itemBuilder: (context, optionIndex) {
                               final option = quiz.options[optionIndex];
+                              final isSelected =
+                                  selectedOptionIndex == optionIndex;
 
                               return AppListTile(
-                                color: Colors.white,
+                                color: isSelected ? Colors.green : Colors.white,
                                 leading: Text(
                                   '${optionIndex + 1}.',
                                   style: const TextStyle(
@@ -102,6 +113,11 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
                                 ),
+                                onTap: () {
+                                  setState(() {
+                                    selectedAnswers[index] = optionIndex;
+                                  });
+                                },
                               );
                             },
                           ),
