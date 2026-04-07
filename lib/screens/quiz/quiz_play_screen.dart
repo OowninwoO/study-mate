@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_mate/models/quiz/quiz_set_model.dart';
+import 'package:study_mate/theme/app_colors.dart';
+import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
 class QuizPlayScreen extends StatefulWidget {
   final QuizSetModel quizSet;
@@ -30,10 +32,12 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 '${currentIndex + 1} / ${quizzes.length}',
                 style: const TextStyle(
+                  color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                 ),
@@ -53,65 +57,50 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
 
                     return SingleChildScrollView(
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             width: double.infinity,
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(24),
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: Colors.black12),
+                              borderRadius: BorderRadius.circular(24),
+                              border: Border.all(color: AppColors.divider),
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '문제 ${index + 1}',
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                Text(
-                                  quiz.question,
-                                  style: const TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                              ],
+                            child: Text(
+                              quiz.question,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 12),
                           ListView.separated(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.zero,
                             separatorBuilder: (_, _) =>
                                 const SizedBox(height: 12),
                             itemCount: quiz.options.length,
                             itemBuilder: (context, optionIndex) {
                               final option = quiz.options[optionIndex];
 
-                              return Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(16),
-                                  border: Border.all(color: Colors.black12),
-                                ),
-                                child: Text(
-                                  '${optionIndex + 1}. $option',
+                              return AppListTile(
+                                color: Colors.white,
+                                leading: Text(
+                                  '${optionIndex + 1}.',
                                   style: const TextStyle(
-                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.w600,
                                   ),
+                                ),
+                                title: option,
+                                titleTextStyle: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               );
                             },
