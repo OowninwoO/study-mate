@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:study_mate/providers/quiz/quiz_generating_provider.dart';
 import 'package:study_mate/providers/quiz/quiz_set_list_provider.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_intro_card.dart';
 import 'package:study_mate/services/pdf_picker_service.dart';
@@ -22,12 +23,16 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   PlatformFile? selectedPdf;
 
   Future<void> _generateQuiz() async {
+    ref.read(quizGeneratingProvider.notifier).state = true;
+
     try {
       await ref.read(quizSetListProvider.notifier).generateQuiz(selectedPdf!);
       ToastUtil.success('문제 생성에 성공했습니다.');
     } catch (e) {
       LoggerUtil.e(e);
       ToastUtil.error('문제 생성에 실패했습니다.');
+    } finally {
+      ref.read(quizGeneratingProvider.notifier).state = false;
     }
   }
 
