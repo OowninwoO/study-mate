@@ -47,7 +47,7 @@ class HomeScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '생성한 퀴즈를\n한눈에 모아보기',
+                    '생성한 문제를\n한눈에 모아보기',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
@@ -56,7 +56,7 @@ class HomeScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    '문제 생성 화면에서 만든 퀴즈를 홈에서 모아보고,\n'
+                    'AI 기반으로 생성한 문제를 모아보고,\n'
                     '원할 때 바로 선택해서 풀 수 있어요.',
                     style: TextStyle(
                       color: Colors.black,
@@ -71,7 +71,7 @@ class HomeScreen extends ConsumerWidget {
                       Expanded(
                         child: AppListTile(
                           color: Colors.white,
-                          title: '보관된 퀴즈',
+                          title: '보관된 문제',
                           subtitle: '${quizzes.length}개',
                           subtitleTextStyle: const TextStyle(
                             color: Colors.blueAccent,
@@ -100,7 +100,7 @@ class HomeScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 24),
             const Text(
-              '퀴즈 보관함',
+              '문제 보관함',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22,

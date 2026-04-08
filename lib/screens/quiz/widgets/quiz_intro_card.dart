@@ -37,7 +37,7 @@ class QuizIntroCard extends StatelessWidget {
           SizedBox(height: 12),
           Text(
             'PDF로 바로\n'
-            '퀴즈 만들기',
+            '문제 만들기',
             style: TextStyle(
               color: Colors.white,
               fontSize: 30,

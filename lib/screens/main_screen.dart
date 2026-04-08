@@ -14,7 +14,7 @@ class MainScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(isGenerating ? '퀴즈 생성 중' : 'StudyMate'),
+        title: Text(isGenerating ? '문제 생성 중' : 'StudyMate'),
         centerTitle: true,
       ),
       body: navigationShell,
