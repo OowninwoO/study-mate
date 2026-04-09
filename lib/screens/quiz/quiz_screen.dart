@@ -11,6 +11,7 @@ import 'package:study_mate/utils/toast_util.dart';
 import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_icon_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
+import 'package:study_mate/widgets/quiz_generating_banner.dart';
 
 class QuizScreen extends ConsumerStatefulWidget {
   const QuizScreen({super.key});
@@ -44,6 +45,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     return SafeArea(
       child: Column(
         children: [
+          if (isGenerating) const QuizGeneratingBanner(),
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(12),

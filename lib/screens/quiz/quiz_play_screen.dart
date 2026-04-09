@@ -66,6 +66,7 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
 
                     return SingleChildScrollView(
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
