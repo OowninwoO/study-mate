@@ -1,0 +1,1 @@
+enum QuizMode { practice, test }
