@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/models/quiz/quiz_set_model.dart';
 import 'package:study_mate/screens/analysis/analysis_screen.dart';
 import 'package:study_mate/screens/auth/login_screen.dart';
@@ -51,7 +52,12 @@ GoRouter appRouter() {
       GoRoute(
         path: '/quiz_play',
         builder: (context, state) {
-          return QuizPlayScreen(quizSet: state.extra as QuizSetModel);
+          final extra = state.extra as Map<String, dynamic>;
+
+          return QuizPlayScreen(
+            quizSet: extra['quizSet'] as QuizSetModel,
+            quizMode: extra['quizMode'] as QuizMode,
+          );
         },
       ),
       StatefulShellRoute.indexedStack(

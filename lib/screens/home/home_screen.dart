@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/providers/quiz/quiz_generating_provider.dart';
 import 'package:study_mate/providers/quiz/quiz_set_list_provider.dart';
 import 'package:study_mate/theme/app_colors.dart';
@@ -141,7 +142,13 @@ class HomeScreen extends ConsumerWidget {
                           textWeight: FontWeight.w700,
                         ),
                         onTap: () {
-                          context.push('/quiz_play', extra: quiz);
+                          context.push(
+                            '/quiz_play',
+                            extra: {
+                              'quizSet': quiz,
+                              'quizMode': QuizMode.practice,
+                            },
+                          );
                         },
                       );
                     },
