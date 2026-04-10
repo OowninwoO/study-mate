@@ -9,6 +9,7 @@ import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 import 'package:study_mate/widgets/quiz_generating_banner.dart';
+import 'package:study_mate/widgets/quiz_mode_dialog.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -141,13 +142,16 @@ class HomeScreen extends ConsumerWidget {
                           textColor: Colors.white,
                           textWeight: FontWeight.w700,
                         ),
-                        onTap: () {
+                        onTap: () async {
+                          final quizMode = await showDialog<QuizMode>(
+                            context: context,
+                            builder: (_) => const QuizModeDialog(),
+                          );
+                          if (quizMode == null) return;
+
                           context.push(
                             '/quiz_play',
-                            extra: {
-                              'quizSet': quiz,
-                              'quizMode': QuizMode.practice,
-                            },
+                            extra: {'quizSet': quiz, 'quizMode': quizMode},
                           );
                         },
                       );
