@@ -80,6 +80,16 @@ flutter:
     - assets/icons/
     - assets/images/
 
+  fonts:
+    - family: OneMobileGothic
+      fonts:
+        - asset: assets/fonts/ONE Mobile Light.ttf
+          weight: 300
+        - asset: assets/fonts/ONE Mobile Regular.ttf
+          weight: 400
+        - asset: assets/fonts/ONE Mobile Bold.ttf
+          weight: 700
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

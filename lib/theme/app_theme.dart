@@ -5,6 +5,7 @@ class AppTheme {
   static ThemeData get light {
     return ThemeData(
       useMaterial3: true,
+      fontFamily: 'OneMobileGothic',
       brightness: Brightness.light,
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.appBarBackground,
