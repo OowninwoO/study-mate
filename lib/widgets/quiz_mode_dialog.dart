@@ -21,7 +21,7 @@ class QuizModeDialog extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w700,
               ),
             ),
             const SizedBox(height: 12),

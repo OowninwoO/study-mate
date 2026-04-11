@@ -20,7 +20,7 @@ class QuizGeneratingBanner extends StatelessWidget {
           style: TextStyle(
             color: Colors.white,
             fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ),

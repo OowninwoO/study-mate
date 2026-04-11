@@ -60,7 +60,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 22,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -96,7 +96,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 22,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -138,7 +138,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               text: '문제 생성하기',
               textColor: Colors.white,
               textSize: 16,
-              textWeight: FontWeight.w800,
+              textWeight: FontWeight.w700,
               onPressed: canGenerateQuiz ? _generateQuiz : null,
             ),
           ),

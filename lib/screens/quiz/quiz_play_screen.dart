@@ -88,7 +88,7 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 22,
-                                fontWeight: FontWeight.w800,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),
@@ -111,14 +111,14 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 18,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
                                 title: option,
                                 titleTextStyle: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 18,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w700,
                                 ),
                                 onTap: () {
                                   setState(() {
@@ -167,7 +167,7 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                                     style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                 ],

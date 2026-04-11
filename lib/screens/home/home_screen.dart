@@ -60,7 +60,7 @@ class HomeScreen extends ConsumerWidget {
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 30,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -70,7 +70,7 @@ class HomeScreen extends ConsumerWidget {
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -85,7 +85,7 @@ class HomeScreen extends ConsumerWidget {
                                 subtitleTextStyle: const TextStyle(
                                   color: Colors.blueAccent,
                                   fontSize: 20,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                             ),
@@ -98,7 +98,7 @@ class HomeScreen extends ConsumerWidget {
                                 subtitleTextStyle: const TextStyle(
                                   color: Colors.blueAccent,
                                   fontSize: 20,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                             ),
@@ -113,7 +113,7 @@ class HomeScreen extends ConsumerWidget {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 22,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   const SizedBox(height: 12),
