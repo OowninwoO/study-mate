@@ -3,6 +3,7 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/models/quiz/quiz_set_model.dart';
 import 'package:study_mate/theme/app_colors.dart';
+import 'package:study_mate/widgets/buttons/app_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
 class QuizPlayScreen extends StatefulWidget {
@@ -45,6 +46,7 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
   @override
   Widget build(BuildContext context) {
     final quizzes = widget.quizSet.quizzes;
+    final isLastQuiz = currentIndex == quizzes.length - 1;
 
     return Scaffold(
       appBar: AppBar(title: Text(widget.quizSet.sourceTitle)),
@@ -65,6 +67,15 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
+                  if (isLastQuiz) ...[
+                    AppTextButton(
+                      bgColor: Colors.black87,
+                      text: '제출하기',
+                      textColor: Colors.white,
+                      textWeight: FontWeight.w700,
+                      onPressed: null,
+                    ),
+                  ],
                   StreamBuilder<int>(
                     stream: _stopWatchTimer.rawTime,
                     initialData: 0,
