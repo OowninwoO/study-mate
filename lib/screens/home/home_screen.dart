@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/providers/quiz/quiz_generating_provider.dart';
 import 'package:study_mate/providers/quiz/quiz_set_list_provider.dart';
+import 'package:study_mate/screens/home/widgets/quiz_empty_card.dart';
 import 'package:study_mate/screens/home/widgets/quiz_summary_card.dart';
 import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/buttons/app_icon_button.dart';
@@ -50,46 +51,50 @@ class HomeScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    separatorBuilder: (_, _) => const SizedBox(height: 12),
-                    itemCount: quizzes.length,
-                    itemBuilder: (context, index) {
-                      final quiz = quizzes[index];
+                  if (quizzes.isEmpty) ...[
+                    const QuizEmptyCard(),
+                  ] else ...[
+                    ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      separatorBuilder: (_, _) => const SizedBox(height: 12),
+                      itemCount: quizzes.length,
+                      itemBuilder: (context, index) {
+                        final quiz = quizzes[index];
 
-                      return AppListTile(
-                        color: Colors.white,
-                        leading: AppIconButton(
-                          bgColor: AppColors.secondary.withValues(alpha: 0.1),
-                          icon: Icons.description_rounded,
-                          iconColor: AppColors.secondary,
-                          iconSize: 30,
-                        ),
-                        title: quiz.sourceTitle,
-                        subtitle:
-                            '${quiz.quizzes.length}문제 · ${quiz.createdAt}',
-                        trailing: AppTextButton(
-                          bgColor: Colors.black,
-                          text: '풀기',
-                          textColor: Colors.white,
-                          textWeight: FontWeight.w700,
-                        ),
-                        onTap: () async {
-                          final quizMode = await showDialog<QuizMode>(
-                            context: context,
-                            builder: (_) => const QuizModeDialog(),
-                          );
-                          if (quizMode == null) return;
+                        return AppListTile(
+                          color: Colors.white,
+                          leading: AppIconButton(
+                            bgColor: AppColors.secondary.withValues(alpha: 0.1),
+                            icon: Icons.description_rounded,
+                            iconColor: AppColors.secondary,
+                            iconSize: 30,
+                          ),
+                          title: quiz.sourceTitle,
+                          subtitle:
+                              '${quiz.quizzes.length}문제 · ${quiz.createdAt}',
+                          trailing: AppTextButton(
+                            bgColor: Colors.black,
+                            text: '풀기',
+                            textColor: Colors.white,
+                            textWeight: FontWeight.w700,
+                          ),
+                          onTap: () async {
+                            final quizMode = await showDialog<QuizMode>(
+                              context: context,
+                              builder: (_) => const QuizModeDialog(),
+                            );
+                            if (quizMode == null) return;
 
-                          context.push(
-                            '/quiz_play',
-                            extra: {'quizSet': quiz, 'quizMode': quizMode},
-                          );
-                        },
-                      );
-                    },
-                  ),
+                            context.push(
+                              '/quiz_play',
+                              extra: {'quizSet': quiz, 'quizMode': quizMode},
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ],
                 ],
               ),
             ),
