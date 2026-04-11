@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/models/quiz/quiz_set_model.dart';
 import 'package:study_mate/theme/app_colors.dart';
@@ -20,6 +21,9 @@ class QuizPlayScreen extends StatefulWidget {
 
 class _QuizPlayScreenState extends State<QuizPlayScreen> {
   final PageController _pageController = PageController();
+  final StopWatchTimer _stopWatchTimer = StopWatchTimer(
+    mode: StopWatchMode.countUp,
+  );
 
   int currentIndex = 0;
   late final List<int?> selectedAnswers;
@@ -28,10 +32,12 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
   void initState() {
     super.initState();
     selectedAnswers = List<int?>.filled(widget.quizSet.quizzes.length, null);
+    _stopWatchTimer.onStartTimer();
   }
 
   @override
   void dispose() {
+    _stopWatchTimer.dispose();
     _pageController.dispose();
     super.dispose();
   }
@@ -48,13 +54,39 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                '${currentIndex + 1} / ${quizzes.length}',
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '${currentIndex + 1} / ${quizzes.length}',
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  StreamBuilder<int>(
+                    stream: _stopWatchTimer.rawTime,
+                    initialData: 0,
+                    builder: (context, snapshot) {
+                      final value = snapshot.data ?? 0;
+                      final displayTime = StopWatchTimer.getDisplayTime(
+                        value,
+                        hours: false,
+                        milliSecond: false,
+                      );
+
+                      return Text(
+                        displayTime,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
               const SizedBox(height: 12),
               Expanded(
