@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/providers/quiz/quiz_generating_provider.dart';
 import 'package:study_mate/providers/quiz/quiz_set_list_provider.dart';
+import 'package:study_mate/screens/home/widgets/quiz_summary_card.dart';
 import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
@@ -35,77 +36,9 @@ class HomeScreen extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(36),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          AppColors.secondary,
-                          AppColors.secondary.withValues(alpha: 0.8),
-                          AppColors.secondary.withValues(alpha: 0.6),
-                        ],
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          '생성한 문제를\n한눈에 모아보기',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        const Text(
-                          'AI 기반으로 생성한 문제를 모아보고,\n'
-                          '원할 때 바로 선택해서 풀 수 있어요.',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: AppListTile(
-                                color: Colors.white,
-                                title: '보관된 문제',
-                                subtitle: '${quizzes.length}개',
-                                subtitleTextStyle: const TextStyle(
-                                  color: Colors.blueAccent,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 24),
-                            Expanded(
-                              child: AppListTile(
-                                color: Colors.white,
-                                title: '문제 수',
-                                subtitle: '$totalQuestionCount문제',
-                                subtitleTextStyle: const TextStyle(
-                                  color: Colors.blueAccent,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  QuizSummaryCard(
+                    quizCount: quizzes.length,
+                    totalQuestionCount: totalQuestionCount,
                   ),
                   const SizedBox(height: 24),
                   const Text(
