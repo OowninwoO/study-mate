@@ -10,6 +10,7 @@ import 'package:study_mate/screens/home/home_screen.dart';
 import 'package:study_mate/screens/main_screen.dart';
 import 'package:study_mate/screens/profile/profile_screen.dart';
 import 'package:study_mate/screens/quiz/quiz_play_screen.dart';
+import 'package:study_mate/screens/quiz/quiz_result_screen.dart';
 import 'package:study_mate/screens/quiz/quiz_screen.dart';
 import 'package:study_mate/services/auth_service.dart';
 
@@ -57,6 +58,18 @@ GoRouter appRouter() {
           return QuizPlayScreen(
             quizSet: extra['quizSet'] as QuizSetModel,
             quizMode: extra['quizMode'] as QuizMode,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/quiz_result',
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+
+          return QuizResultScreen(
+            quizSet: extra['quizSet'] as QuizSetModel,
+            selectedAnswers: extra['selectedAnswers'] as List<int?>,
+            solvingTime: extra['solvingTime'] as int,
           );
         },
       ),

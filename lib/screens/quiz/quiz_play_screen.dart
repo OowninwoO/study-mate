@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/models/quiz/quiz_set_model.dart';
@@ -73,7 +74,18 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                       text: '제출하기',
                       textColor: Colors.white,
                       textWeight: FontWeight.w700,
-                      onPressed: null,
+                      onPressed: () {
+                        _stopWatchTimer.onStopTimer();
+
+                        context.pushReplacement(
+                          '/quiz_result',
+                          extra: {
+                            'quizSet': widget.quizSet,
+                            'selectedAnswers': selectedAnswers,
+                            'solvingTime': _stopWatchTimer.rawTime.value,
+                          },
+                        );
+                      },
                     ),
                   ],
                   StreamBuilder<int>(
