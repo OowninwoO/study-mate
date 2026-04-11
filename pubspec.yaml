@@ -49,6 +49,7 @@ dependencies:
   freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
   animate_gradient: ^0.0.4
+  stop_watch_timer: ^3.2.2
 
 dev_dependencies:
   flutter_test:
