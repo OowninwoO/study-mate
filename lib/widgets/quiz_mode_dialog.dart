@@ -9,6 +9,8 @@ class QuizModeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final modes = QuizMode.values;
+
     return Dialog(
       backgroundColor: AppColors.scaffoldBackground,
       child: Padding(
@@ -25,21 +27,22 @@ class QuizModeDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            AppListTile(
-              color: Colors.white,
-              title: '연습 모드',
-              subtitle: '정답과 해설을 보면서 풀기',
-              onTap: () {
-                Navigator.pop(context, QuizMode.practice);
-              },
-            ),
-            const SizedBox(height: 12),
-            AppListTile(
-              color: Colors.white,
-              title: '시험 모드',
-              subtitle: '실전처럼 정답 없이 풀기',
-              onTap: () {
-                Navigator.pop(context, QuizMode.test);
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              separatorBuilder: (_, _) => const SizedBox(height: 12),
+              itemCount: modes.length,
+              itemBuilder: (context, index) {
+                final mode = modes[index];
+
+                return AppListTile(
+                  color: Colors.white,
+                  title: mode.title,
+                  subtitle: mode.subtitle,
+                  onTap: () {
+                    Navigator.pop(context, mode);
+                  },
+                );
               },
             ),
             const SizedBox(height: 12),
