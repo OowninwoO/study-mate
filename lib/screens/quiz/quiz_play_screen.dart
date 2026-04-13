@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
+import 'package:study_mate/models/quiz/quiz_item_answer_model.dart';
+import 'package:study_mate/models/quiz/quiz_set_answer_model.dart';
 import 'package:study_mate/models/quiz/quiz_set_model.dart';
 import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
@@ -44,6 +46,29 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
     super.dispose();
   }
 
+  void _submitQuiz() {
+    _stopWatchTimer.onStopTimer();
+
+    final answerModel = QuizSetAnswerModel(
+      quizSetId: widget.quizSet.id,
+      answers: List.generate(widget.quizSet.quizzes.length, (i) {
+        final quiz = widget.quizSet.quizzes[i];
+
+        return QuizItemAnswerModel(
+          quizItemId: quiz.id,
+          selectedAnswer: selectedAnswers[i],
+        );
+      }),
+      solvingTime: _stopWatchTimer.rawTime.value,
+      createdAt: DateTime.now(),
+    );
+
+    context.pushReplacement(
+      '/quiz_result',
+      extra: {'quizSet': widget.quizSet, 'answerModel': answerModel},
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final quizzes = widget.quizSet.quizzes;
@@ -74,18 +99,7 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                       text: '제출하기',
                       textColor: Colors.white,
                       textWeight: FontWeight.w700,
-                      onPressed: () {
-                        _stopWatchTimer.onStopTimer();
-
-                        context.pushReplacement(
-                          '/quiz_result',
-                          extra: {
-                            'quizSet': widget.quizSet,
-                            'selectedAnswers': selectedAnswers,
-                            'solvingTime': _stopWatchTimer.rawTime.value,
-                          },
-                        );
-                      },
+                      onPressed: _submitQuiz,
                     ),
                   ],
                   StreamBuilder<int>(
