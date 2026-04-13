@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:study_mate/models/quiz/quiz_set_answer_model.dart';
 import 'package:study_mate/models/quiz/quiz_set_model.dart';
 
 class QuizResultScreen extends StatelessWidget {
   final QuizSetModel quizSet;
-  final List<int?> selectedAnswers;
-  final int solvingTime;
+  final QuizSetAnswerModel answerModel;
 
   const QuizResultScreen({
     super.key,
     required this.quizSet,
-    required this.selectedAnswers,
-    required this.solvingTime,
+    required this.answerModel,
   });
 
   @override
   Widget build(BuildContext context) {
     final quizzes = quizSet.quizzes;
 
-    int correctCount = 0;
-    for (int i = 0; i < quizzes.length; i++) {
-      if (selectedAnswers[i] == quizzes[i].answerIndex) {
-        correctCount++;
-      }
-    }
+    final correctCount = quizzes.where((quiz) {
+      final answer = answerModel.answers.firstWhere(
+        (e) => e.quizItemId == quiz.id,
+      );
+
+      return answer.selectedAnswer == quiz.answerIndex;
+    }).length;
 
     final score = ((correctCount * 100) / quizzes.length).round();
 
     final displayTime = StopWatchTimer.getDisplayTime(
-      solvingTime,
+      answerModel.solvingTime,
       hours: false,
       milliSecond: false,
     );
@@ -50,10 +50,18 @@ class QuizResultScreen extends StatelessWidget {
                   itemCount: quizzes.length,
                   separatorBuilder: (_, _) => const SizedBox(height: 12),
                   itemBuilder: (context, index) {
-                    final isCorrect =
-                        selectedAnswers[index] == quizzes[index].answerIndex;
+                    final quiz = quizzes[index];
+                    final answer = answerModel.answers.firstWhere(
+                      (e) => e.quizItemId == quiz.id,
+                    );
 
-                    return Text('${index + 1}. ${isCorrect ? 'O' : 'X'}');
+                    final resultText = answer.selectedAnswer == null
+                        ? '-'
+                        : answer.selectedAnswer == quiz.answerIndex
+                        ? 'O'
+                        : 'X';
+
+                    return Text('${index + 1}. $resultText');
                   },
                 ),
               ),

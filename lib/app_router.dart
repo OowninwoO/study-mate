@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
+import 'package:study_mate/models/quiz/quiz_set_answer_model.dart';
 import 'package:study_mate/models/quiz/quiz_set_model.dart';
 import 'package:study_mate/screens/analysis/analysis_screen.dart';
 import 'package:study_mate/screens/auth/login_screen.dart';
@@ -68,8 +69,7 @@ GoRouter appRouter() {
 
           return QuizResultScreen(
             quizSet: extra['quizSet'] as QuizSetModel,
-            selectedAnswers: extra['selectedAnswers'] as List<int?>,
-            solvingTime: extra['solvingTime'] as int,
+            answerModel: extra['answerModel'] as QuizSetAnswerModel,
           );
         },
       ),
