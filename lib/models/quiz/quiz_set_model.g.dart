@@ -8,6 +8,7 @@ part of 'quiz_set_model.dart';
 
 _QuizSetModel _$QuizSetModelFromJson(Map<String, dynamic> json) =>
     _QuizSetModel(
+      id: json['id'] as String,
       sourceTitle: json['sourceTitle'] as String,
       quizzes: (json['quizzes'] as List<dynamic>)
           .map((e) => QuizItemModel.fromJson(e as Map<String, dynamic>))
@@ -17,6 +18,7 @@ _QuizSetModel _$QuizSetModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$QuizSetModelToJson(_QuizSetModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'sourceTitle': instance.sourceTitle,
       'quizzes': instance.quizzes,
       'createdAt': instance.createdAt.toIso8601String(),

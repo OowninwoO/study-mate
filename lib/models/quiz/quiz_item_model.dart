@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'quiz_item_model.freezed.dart';
-
 part 'quiz_item_model.g.dart';
 
 @freezed
 abstract class QuizItemModel with _$QuizItemModel {
   const factory QuizItemModel({
+    required String id,
     required String question,
     required List<String> options,
     required int answerIndex,
