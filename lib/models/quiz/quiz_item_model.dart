@@ -7,6 +7,8 @@ part 'quiz_item_model.g.dart';
 abstract class QuizItemModel with _$QuizItemModel {
   const factory QuizItemModel({
     required String id,
+    required String quizSetId,
+    required int questionNumber,
     required String question,
     required List<String> options,
     required int answerIndex,
