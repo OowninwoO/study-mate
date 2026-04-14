@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:study_mate/api/main/quiz_api.dart';
-import 'package:study_mate/models/quiz/quiz_set_model.dart';
+import 'package:study_mate/models/quiz/source/quiz_set_model.dart';
 
 part 'quiz_set_list_provider.g.dart';
 

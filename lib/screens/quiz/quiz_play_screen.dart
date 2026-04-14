@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
-import 'package:study_mate/models/quiz/quiz_set_model.dart';
+import 'package:study_mate/models/quiz/source/quiz_set_model.dart';
 import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
