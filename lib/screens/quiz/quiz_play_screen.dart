@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/models/quiz/request/quiz_submit_answer_request_model.dart';
@@ -48,6 +49,15 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
 
   void _submitQuiz() {
     _stopWatchTimer.onStopTimer();
+
+    context.pushReplacement(
+      '/quiz_result',
+      extra: {
+        'quizSet': widget.quizSet,
+        'selectedAnswers': selectedAnswers,
+        'solvingTime': _stopWatchTimer.rawTime.value,
+      },
+    );
 
     final request = QuizSubmitRequestModel(
       quizSetId: widget.quizSet.id,
