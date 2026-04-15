@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
+import 'package:study_mate/models/quiz/request/quiz_submit_answer_request_model.dart';
+import 'package:study_mate/models/quiz/request/quiz_submit_request_model.dart';
 import 'package:study_mate/models/quiz/source/quiz_set_model.dart';
 import 'package:study_mate/theme/app_colors.dart';
+import 'package:study_mate/utils/logger_util.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
@@ -45,6 +48,20 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
 
   void _submitQuiz() {
     _stopWatchTimer.onStopTimer();
+
+    final request = QuizSubmitRequestModel(
+      quizSetId: widget.quizSet.id,
+      solvingTime: _stopWatchTimer.rawTime.value,
+      answers: List.generate(
+        widget.quizSet.quizzes.length,
+        (index) => QuizSubmitAnswerRequestModel(
+          quizItemId: widget.quizSet.quizzes[index].id,
+          selectedAnswer: selectedAnswers[index],
+        ),
+      ),
+    );
+
+    LoggerUtil.d(request);
   }
 
   @override
