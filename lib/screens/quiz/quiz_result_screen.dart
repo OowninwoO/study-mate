@@ -33,9 +33,8 @@ class QuizResultScreen extends StatelessWidget {
     final correctCount = results
         .where((isCorrect) => isCorrect.isCorrect)
         .length;
-
     final score = ((correctCount * 100) / quizzes.length).round();
-
+    final correctCountText = '$correctCount / ${quizzes.length}';
     final displayTime = StopWatchTimer.getDisplayTime(
       solvingTime,
       hours: false,
@@ -52,7 +51,7 @@ class QuizResultScreen extends StatelessWidget {
             children: [
               Text('점수: $score점'),
               const SizedBox(height: 12),
-              Text('맞은 개수: $correctCount개'),
+              Text('정답 수: $correctCountText'),
               const SizedBox(height: 12),
               Text('걸린 시간: $displayTime'),
               const SizedBox(height: 12),
