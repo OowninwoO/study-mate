@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
-class QuizSummaryCard extends StatelessWidget {
-  final int quizCount;
-  final int totalQuestionCount;
+class QuizResultSummaryCard extends StatelessWidget {
+  final int score;
+  final String correctCountText;
+  final String displayTime;
 
-  const QuizSummaryCard({
+  const QuizResultSummaryCard({
     super.key,
-    required this.quizCount,
-    required this.totalQuestionCount,
+    required this.score,
+    required this.correctCountText,
+    required this.displayTime,
   });
 
   @override
@@ -18,15 +20,14 @@ class QuizSummaryCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(36),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.secondary,
-            AppColors.secondary.withValues(alpha: 0.8),
-            AppColors.secondary.withValues(alpha: 0.6),
+            AppColors.primary,
+            AppColors.primary.withValues(alpha: 0.9),
+            AppColors.primary.withValues(alpha: 0.8),
           ],
         ),
       ),
@@ -34,35 +35,33 @@ class QuizSummaryCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '생성한 문제를\n'
-            '한눈에 모아보기',
-            style: TextStyle(
+          Text(
+            '$score점',
+            style: const TextStyle(
               color: Colors.white,
-              fontSize: 30,
+              fontSize: 40,
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 12),
-          const Text(
-            'AI 기반으로 생성한 문제를 모아보고,\n'
-            '원할 때 바로 선택해서 풀 수 있어요.',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-            ),
+          const SizedBox(height: 24),
+          LinearProgressIndicator(
+            value: score / 100,
+            minHeight: 8,
+            borderRadius: BorderRadius.circular(36),
+            backgroundColor: Colors.grey.withValues(alpha: 0.8),
+            color: Colors.white,
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 24),
           Row(
             children: [
               Expanded(
                 child: AppListTile(
                   color: Colors.white,
-                  title: '보관된 문제',
-                  subtitle: '$quizCount개',
+                  leading: const Icon(Icons.check_circle_outline_rounded),
+                  title: '정답 수',
+                  subtitle: correctCountText,
                   subtitleTextStyle: const TextStyle(
-                    color: Colors.blueAccent,
+                    color: AppColors.primary,
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),
@@ -72,10 +71,11 @@ class QuizSummaryCard extends StatelessWidget {
               Expanded(
                 child: AppListTile(
                   color: Colors.white,
-                  title: '문제 수',
-                  subtitle: '$totalQuestionCount문제',
+                  leading: const Icon(Icons.timer_outlined),
+                  title: '걸린 시간',
+                  subtitle: displayTime,
                   subtitleTextStyle: const TextStyle(
-                    color: Colors.blueAccent,
+                    color: AppColors.primary,
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),

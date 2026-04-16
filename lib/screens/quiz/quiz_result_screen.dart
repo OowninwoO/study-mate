@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:study_mate/models/quiz/source/quiz_item_model.dart';
 import 'package:study_mate/models/quiz/source/quiz_set_model.dart';
+import 'package:study_mate/screens/quiz/widgets/quiz_result_summary_card.dart';
 
 class QuizResultScreen extends StatelessWidget {
   final QuizSetModel quizSet;
@@ -40,31 +41,17 @@ class QuizResultScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FB),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: const Color(0xFFF5F7FB),
-        surfaceTintColor: Colors.transparent,
-        title: const Text(
-          '채점 결과',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF111827),
-          ),
-        ),
-      ),
+      appBar: AppBar(title: Text('채점 결과')),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+          padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _QuizResultSummaryCard(
+              QuizResultSummaryCard(
                 score: score,
                 correctCountText: correctCountText,
                 displayTime: displayTime,
-                totalCount: quizzes.length,
               ),
               const SizedBox(height: 24),
               const Text(
@@ -105,169 +92,6 @@ class QuizResultScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _QuizResultSummaryCard extends StatelessWidget {
-  final int score;
-  final String correctCountText;
-  final String displayTime;
-  final int totalCount;
-
-  const _QuizResultSummaryCard({
-    required this.score,
-    required this.correctCountText,
-    required this.displayTime,
-    required this.totalCount,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final progress = totalCount == 0 ? 0.0 : score / 100;
-
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(28),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF4F7CFF), Color(0xFF6A5CFF)],
-        ),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x1A4F7CFF),
-            blurRadius: 24,
-            offset: Offset(0, 12),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Row(
-            children: [
-              Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 18),
-              SizedBox(width: 8),
-              Text(
-                '이번 퀴즈 결과',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Text(
-            '$score점',
-            style: const TextStyle(
-              fontSize: 44,
-              height: 1,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            '정답 수 $correctCountText',
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 16),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(999),
-            child: LinearProgressIndicator(
-              value: progress,
-              minHeight: 10,
-              backgroundColor: const Color(0x33FFFFFF),
-              valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
-          ),
-          const SizedBox(height: 18),
-          Row(
-            children: [
-              Expanded(
-                child: _ResultInfoChip(
-                  icon: Icons.check_circle_outline_rounded,
-                  label: '정답 수',
-                  value: correctCountText,
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: _ResultInfoChip(
-                  icon: Icons.timer_outlined,
-                  label: '걸린 시간',
-                  value: displayTime,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ResultInfoChip extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String value;
-
-  const _ResultInfoChip({
-    required this.icon,
-    required this.label,
-    required this.value,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-      decoration: BoxDecoration(
-        color: const Color(0x1FFFFFFF),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: const Color(0x26FFFFFF)),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size: 18, color: Colors.white),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  value,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
