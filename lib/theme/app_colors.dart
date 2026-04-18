@@ -9,13 +9,4 @@ class AppColors {
   static const Color bottomNavBackground = Color(0xFFFFFFFF);
 
   static const Color divider = Color(0xFFE3EAF8);
-
-  static const Color correct = Color(0xFF2FBF71);
-  static const Color correctBackground = Color(0xFFEAF8F0);
-
-  static const Color wrong = Color(0xFFE85D75);
-  static const Color wrongBackground = Color(0xFFFFEEF1);
-
-  static const Color unanswered = Color(0xFF94A3B8);
-  static const Color unansweredBackground = Color(0xFFF1F5F9);
 }

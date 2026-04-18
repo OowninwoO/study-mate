@@ -3,7 +3,6 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:study_mate/models/quiz/source/quiz_item_model.dart';
 import 'package:study_mate/models/quiz/source/quiz_set_model.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_result_summary_card.dart';
-import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
 class QuizResultScreen extends StatelessWidget {
@@ -117,10 +116,10 @@ class _QuizResultCard extends StatelessWidget {
         : Icons.close_rounded;
 
     final resultIconColor = isUnanswered
-        ? AppColors.unanswered
+        ? Colors.grey
         : isCorrect
-        ? AppColors.correct
-        : AppColors.wrong;
+        ? Colors.green
+        : Colors.red;
 
     return AppListTile(
       color: Colors.white,
