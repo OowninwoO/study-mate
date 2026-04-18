@@ -10,6 +10,7 @@ class AppListTile extends StatelessWidget {
   final TextStyle? titleTextStyle;
   final String? subtitle;
   final TextStyle? subtitleTextStyle;
+  final Widget? subtitleWidget;
   final Widget? trailing;
   final VoidCallback? onTap;
 
@@ -23,6 +24,7 @@ class AppListTile extends StatelessWidget {
     this.titleTextStyle,
     this.subtitle,
     this.subtitleTextStyle,
+    this.subtitleWidget,
     this.trailing,
     this.onTap,
   });
@@ -43,7 +45,7 @@ class AppListTile extends StatelessWidget {
         leading: leading,
         title: Text(title),
         titleTextStyle: titleTextStyle,
-        subtitle: subtitle != null ? Text(subtitle!) : null,
+        subtitle: subtitle != null ? Text(subtitle!) : subtitleWidget,
         subtitleTextStyle: subtitleTextStyle,
         trailing: trailing,
         onTap: onTap,

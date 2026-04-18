@@ -4,7 +4,6 @@ import 'package:study_mate/models/quiz/source/quiz_item_model.dart';
 import 'package:study_mate/models/quiz/source/quiz_set_model.dart';
 import 'package:study_mate/screens/quiz/widgets/quiz_result_summary_card.dart';
 import 'package:study_mate/theme/app_colors.dart';
-import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
 class QuizResultScreen extends StatelessWidget {
@@ -46,9 +45,10 @@ class QuizResultScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('채점 결과')),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(12),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               QuizResultSummaryCard(
@@ -60,36 +60,28 @@ class QuizResultScreen extends StatelessWidget {
               const Text(
                 '문제별 결과',
                 style: TextStyle(
-                  fontSize: 20,
+                  color: Colors.black,
+                  fontSize: 22,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF111827),
                 ),
               ),
-              const SizedBox(height: 6),
-              const Text(
-                '정답 여부와 선택 결과를 한눈에 확인해보세요.',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w300,
-                  color: Color(0xFF6B7280),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Expanded(
-                child: ListView.separated(
-                  itemCount: results.length,
-                  separatorBuilder: (_, _) => const SizedBox(height: 12),
-                  itemBuilder: (context, index) {
-                    final result = results[index];
+              const SizedBox(height: 12),
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (_, _) => const SizedBox(height: 12),
+                itemCount: results.length,
+                itemBuilder: (context, index) {
+                  final result = results[index];
 
-                    return _QuizResultCard(
-                      number: index + 1,
-                      question: result.quiz.question,
-                      selectedAnswer: result.selectedAnswer,
-                      isCorrect: result.isCorrect,
-                    );
-                  },
-                ),
+                  return _QuizResultCard(
+                    number: index + 1,
+                    question: result.quiz.question,
+                    options: result.quiz.options,
+                    selectedAnswer: result.selectedAnswer,
+                    isCorrect: result.isCorrect,
+                  );
+                },
               ),
             ],
           ),
@@ -102,12 +94,14 @@ class QuizResultScreen extends StatelessWidget {
 class _QuizResultCard extends StatelessWidget {
   final int number;
   final String question;
+  final List<String> options;
   final int? selectedAnswer;
   final bool isCorrect;
 
   const _QuizResultCard({
     required this.number,
     required this.question,
+    required this.options,
     required this.selectedAnswer,
     required this.isCorrect,
   });
@@ -130,9 +124,31 @@ class _QuizResultCard extends StatelessWidget {
 
     return AppListTile(
       color: Colors.white,
-      leading: Text('$number'),
+      leading: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '$number',
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Icon(resultIcon, color: resultIconColor),
+        ],
+      ),
       title: question,
-      trailing: AppIconButton(icon: resultIcon, iconColor: resultIconColor),
+      subtitleWidget: ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        separatorBuilder: (_, _) => const SizedBox(height: 6),
+        itemCount: options.length,
+        itemBuilder: (context, index) {
+          return AppListTile(title: options[index]);
+        },
+      ),
     );
   }
 }
