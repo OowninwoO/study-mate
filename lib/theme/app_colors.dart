@@ -15,4 +15,7 @@ class AppColors {
 
   static const Color wrong = Color(0xFFE85D75);
   static const Color wrongBackground = Color(0xFFFFEEF1);
+
+  static const Color unanswered = Color(0xFF94A3B8);
+  static const Color unansweredBackground = Color(0xFFF1F5F9);
 }
