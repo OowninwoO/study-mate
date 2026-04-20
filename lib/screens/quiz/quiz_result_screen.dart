@@ -76,7 +76,6 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
           padding: const EdgeInsets.all(12),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               QuizResultSummaryCard(
                 score: score,
