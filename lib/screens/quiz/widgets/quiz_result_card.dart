@@ -19,22 +19,35 @@ class QuizResultCard extends StatelessWidget {
     required this.isCorrect,
   });
 
+  Widget _resolveResultIcon() {
+    if (selectedAnswer == null) {
+      return const Icon(Icons.remove_rounded, color: Colors.grey);
+    }
+
+    if (isCorrect) {
+      return const Icon(Icons.check_rounded, color: Colors.green);
+    }
+
+    return const Icon(Icons.close_rounded, color: Colors.red);
+  }
+
+  Color? _resolveTileColor(int index) {
+    if (selectedAnswer == null) return null;
+
+    final isSelected = index == selectedAnswer;
+    final isAnswer = index == answerIndex;
+
+    if (isCorrect) {
+      return isSelected ? Colors.green : null;
+    }
+
+    if (isSelected) return Colors.red;
+    if (isAnswer) return Colors.green;
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final isUnanswered = selectedAnswer == null;
-
-    final resultIcon = isUnanswered
-        ? Icons.remove_rounded
-        : isCorrect
-        ? Icons.check_rounded
-        : Icons.close_rounded;
-
-    final resultIconColor = isUnanswered
-        ? Colors.grey
-        : isCorrect
-        ? Colors.green
-        : Colors.red;
-
     return AppListTile(
       color: Colors.white,
       leading: Column(
@@ -49,7 +62,7 @@ class QuizResultCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 6),
-          Icon(resultIcon, color: resultIconColor),
+          _resolveResultIcon(),
         ],
       ),
       title: question,
@@ -59,23 +72,10 @@ class QuizResultCard extends StatelessWidget {
         separatorBuilder: (_, _) => const SizedBox(height: 6),
         itemCount: options.length,
         itemBuilder: (context, index) {
-          Color? tileColor;
-
-          if (selectedAnswer != null) {
-            if (isCorrect) {
-              if (index == selectedAnswer) {
-                tileColor = Colors.green;
-              }
-            } else {
-              if (index == selectedAnswer) {
-                tileColor = Colors.red;
-              } else if (index == answerIndex) {
-                tileColor = Colors.green;
-              }
-            }
-          }
-
-          return AppListTile(color: tileColor, title: options[index]);
+          return AppListTile(
+            color: _resolveTileColor(index),
+            title: options[index],
+          );
         },
       ),
     );
