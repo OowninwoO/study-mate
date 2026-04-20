@@ -24,6 +24,7 @@ class QuizResultScreen extends StatefulWidget {
 
 class _QuizResultScreenState extends State<QuizResultScreen> {
   late final List<GlobalKey> _itemKeys;
+  final _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -34,12 +35,28 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
     );
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   Future<void> _scrollToQuestion(int index) async {
     final context = _itemKeys[index].currentContext;
     if (context == null) return;
 
     await Scrollable.ensureVisible(
       context,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  Future<void> _scrollToTop() async {
+    if (!_scrollController.hasClients) return;
+
+    await _scrollController.animateTo(
+      0,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
@@ -73,6 +90,7 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
       appBar: AppBar(title: const Text('채점 결과')),
       body: SafeArea(
         child: SingleChildScrollView(
+          controller: _scrollController,
           padding: const EdgeInsets.all(12),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -131,6 +149,13 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        mini: true,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        onPressed: _scrollToTop,
+        child: const Icon(Icons.keyboard_arrow_up_rounded),
       ),
     );
   }
