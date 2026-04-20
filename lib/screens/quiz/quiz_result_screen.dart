@@ -77,6 +77,7 @@ class QuizResultScreen extends StatelessWidget {
                     number: index + 1,
                     question: result.quiz.question,
                     options: result.quiz.options,
+                    answerIndex: result.quiz.answerIndex,
                     selectedAnswer: result.selectedAnswer,
                     isCorrect: result.isCorrect,
                   );

@@ -5,6 +5,7 @@ class QuizResultCard extends StatelessWidget {
   final int number;
   final String question;
   final List<String> options;
+  final int answerIndex;
   final int? selectedAnswer;
   final bool isCorrect;
 
@@ -13,6 +14,7 @@ class QuizResultCard extends StatelessWidget {
     required this.number,
     required this.question,
     required this.options,
+    required this.answerIndex,
     required this.selectedAnswer,
     required this.isCorrect,
   });
@@ -57,7 +59,23 @@ class QuizResultCard extends StatelessWidget {
         separatorBuilder: (_, _) => const SizedBox(height: 6),
         itemCount: options.length,
         itemBuilder: (context, index) {
-          return AppListTile(title: options[index]);
+          Color? tileColor;
+
+          if (selectedAnswer != null) {
+            if (isCorrect) {
+              if (index == selectedAnswer) {
+                tileColor = Colors.green;
+              }
+            } else {
+              if (index == selectedAnswer) {
+                tileColor = Colors.red;
+              } else if (index == answerIndex) {
+                tileColor = Colors.green;
+              }
+            }
+          }
+
+          return AppListTile(color: tileColor, title: options[index]);
         },
       ),
     );
