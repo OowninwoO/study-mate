@@ -10,7 +10,7 @@ class MainScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text('StudyMate'), centerTitle: true),
+      appBar: AppBar(title: const Text('오늘도 한 걸음 더'), centerTitle: true),
       body: navigationShell,
       bottomNavigationBar: NavigationBar(
         selectedIndex: navigationShell.currentIndex,
