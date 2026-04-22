@@ -7,6 +7,7 @@ import 'package:study_mate/providers/quiz/quiz_set_list_provider.dart';
 import 'package:study_mate/screens/home/widgets/quiz_empty_card.dart';
 import 'package:study_mate/screens/home/widgets/quiz_summary_card.dart';
 import 'package:study_mate/theme/app_colors.dart';
+import 'package:study_mate/utils/date_time_util.dart';
 import 'package:study_mate/widgets/buttons/app_icon_button.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
@@ -72,7 +73,7 @@ class HomeScreen extends ConsumerWidget {
                           ),
                           title: quiz.sourceTitle,
                           subtitle:
-                              '${quiz.quizzes.length}문제 · ${quiz.createdAt}',
+                              '${quiz.quizzes.length}문제 · ${DateTimeUtil.formatDateTime(quiz.createdAt)}',
                           trailing: AppTextButton(
                             bgColor: Colors.black,
                             text: '풀기',
