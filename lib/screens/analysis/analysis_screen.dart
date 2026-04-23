@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_mate/screens/analysis/widgets/ratio_bar.dart';
 import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
@@ -152,7 +153,7 @@ class _SummaryCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          _RatioBar(
+          RatioBar(
             height: 16,
             correctCount: correctCount,
             wrongCount: wrongCount,
@@ -266,52 +267,11 @@ class _CategoryAnalysisTile extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 14),
-          _RatioBar(
+          RatioBar(
             height: 12,
             correctCount: data.correctCount,
             wrongCount: data.wrongCount,
             unansweredCount: data.unansweredCount,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _RatioBar extends StatelessWidget {
-  final double height;
-  final int correctCount;
-  final int wrongCount;
-  final int unansweredCount;
-
-  const _RatioBar({
-    required this.height,
-    required this.correctCount,
-    required this.wrongCount,
-    required this.unansweredCount,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: height,
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            flex: correctCount,
-            child: Container(color: Colors.green),
-          ),
-          Expanded(
-            flex: wrongCount,
-            child: Container(color: Colors.red),
-          ),
-          Expanded(
-            flex: unansweredCount,
-            child: Container(color: Colors.grey),
           ),
         ],
       ),
