@@ -3,17 +3,6 @@ import 'package:flutter/material.dart';
 class AnalysisScreen extends StatelessWidget {
   const AnalysisScreen({super.key});
 
-  static const Color _primary = Color(0xFF6C63FF);
-  static const Color _secondary = Color(0xFF4288F7);
-  static const Color _correctColor = Color(0xFF2FBF71);
-  static const Color _wrongColor = Color(0xFFE85D75);
-  static const Color _unansweredColor = Color(0xFFB8C0CC);
-  static const Color _cardColor = Colors.white;
-  static const Color _backgroundColor = Color(0xFFF6F7FB);
-  static const Color _dividerColor = Color(0xFFE7EBF3);
-  static const Color _textPrimary = Color(0xFF1F2937);
-  static const Color _textSecondary = Color(0xFF6B7280);
-
   @override
   Widget build(BuildContext context) {
     const categories = [
@@ -66,60 +55,59 @@ class AnalysisScreen extends StatelessWidget {
         ) ~/
         totalSolved;
 
-    return Scaffold(
-      backgroundColor: _backgroundColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                '분석',
-                style: TextStyle(
-                  color: _textPrimary,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                ),
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              '분석',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
               ),
-              const SizedBox(height: 8),
-              const Text(
-                '카테고리별 정답 비율과 평균 풀이시간을 한눈에 볼 수 있어요.',
-                style: TextStyle(
-                  color: _textSecondary,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
+            ),
+            const SizedBox(height: 6),
+            const Text(
+              '카테고리별 정답 비율과 평균 풀이시간을 한눈에 볼 수 있어요.',
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
               ),
-              const SizedBox(height: 20),
-              _SummaryCard(
-                correctCount: totalCorrect,
-                wrongCount: totalWrong,
-                unansweredCount: totalUnanswered,
-                averageSolveSeconds: weightedAverageSeconds,
+            ),
+            const SizedBox(height: 12),
+            _SummaryCard(
+              correctCount: totalCorrect,
+              wrongCount: totalWrong,
+              unansweredCount: totalUnanswered,
+              averageSolveSeconds: weightedAverageSeconds,
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              '카테고리별 분석',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
               ),
-              const SizedBox(height: 24),
-              const Text(
-                '카테고리별 분석',
-                style: TextStyle(
-                  color: _textPrimary,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Column(
-                children: categories
-                    .map(
-                      (item) => Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: _CategoryAnalysisTile(data: item),
-                      ),
-                    )
-                    .toList(),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 12),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              separatorBuilder: (_, _) => const SizedBox(height: 12),
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                final item = categories[index];
+
+                return _CategoryAnalysisTile(data: item);
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -147,7 +135,6 @@ class _SummaryCard extends StatelessWidget {
   static const Color _cardColor = Colors.white;
   static const Color _dividerColor = Color(0xFFE7EBF3);
   static const Color _textPrimary = Color(0xFF1F2937);
-  static const Color _textSecondary = Color(0xFF6B7280);
 
   @override
   Widget build(BuildContext context) {
@@ -177,15 +164,6 @@ class _SummaryCard extends StatelessWidget {
               color: _textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            '정답 / 오답 / 안 고름 비율',
-            style: TextStyle(
-              color: _textSecondary,
-              fontSize: 13,
-              fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: 10),
