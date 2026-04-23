@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:study_mate/theme/app_colors.dart';
+import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
 class AnalysisScreen extends StatelessWidget {
   const AnalysisScreen({super.key});
@@ -70,7 +72,7 @@ class AnalysisScreen extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 8),
             const Text(
               '카테고리별 정답 비율과 평균 풀이시간을 한눈에 볼 수 있어요.',
               style: TextStyle(
@@ -127,102 +129,52 @@ class _SummaryCard extends StatelessWidget {
     required this.averageSolveSeconds,
   });
 
-  static const Color _correctColor = Color(0xFF2FBF71);
-  static const Color _wrongColor = Color(0xFFE85D75);
-  static const Color _unansweredColor = Color(0xFFB8C0CC);
-  static const Color _primary = Color(0xFF6C63FF);
-  static const Color _secondary = Color(0xFF4288F7);
-  static const Color _cardColor = Colors.white;
-  static const Color _dividerColor = Color(0xFFE7EBF3);
-  static const Color _textPrimary = Color(0xFF1F2937);
-
   @override
   Widget build(BuildContext context) {
-    final total = correctCount + wrongCount + unansweredCount;
-
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: _cardColor,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: _dividerColor),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x0A000000),
-            blurRadius: 18,
-            offset: Offset(0, 8),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(36),
+        border: Border.all(color: AppColors.divider),
+        color: Colors.white,
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
             '전체 요약',
             style: TextStyle(
-              color: _textPrimary,
+              color: Colors.black,
               fontSize: 18,
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           _RatioBar(
+            height: 16,
             correctCount: correctCount,
             wrongCount: wrongCount,
             unansweredCount: unansweredCount,
-            height: 14,
-            borderRadius: 999,
           ),
           const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              _LegendChip(
-                color: _correctColor,
-                label: '정답 ${_percent(correctCount, total)}%',
-              ),
-              _LegendChip(
-                color: _wrongColor,
-                label: '오답 ${_percent(wrongCount, total)}%',
-              ),
-              _LegendChip(
-                color: _unansweredColor,
-                label: '안 고름 ${_percent(unansweredCount, total)}%',
-              ),
-            ],
-          ),
-          const SizedBox(height: 18),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              gradient: const LinearGradient(colors: [_primary, _secondary]),
+          AppListTile(
+            color: AppColors.primary,
+            leading: const Icon(Icons.timer_outlined, color: Colors.white),
+            title: '전체 평균 풀이시간',
+            titleTextStyle: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
             ),
-            child: Row(
-              children: [
-                const Icon(Icons.timer_outlined, color: Colors.white, size: 20),
-                const SizedBox(width: 10),
-                const Expanded(
-                  child: Text(
-                    '전체 평균 풀이시간',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Text(
-                  _formatDuration(averageSolveSeconds),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
+            trailing: Text(
+              '$averageSolveSeconds초',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ],
@@ -236,9 +188,6 @@ class _CategoryAnalysisTile extends StatelessWidget {
 
   const _CategoryAnalysisTile({required this.data});
 
-  static const Color _correctColor = Color(0xFF2FBF71);
-  static const Color _wrongColor = Color(0xFFE85D75);
-  static const Color _unansweredColor = Color(0xFFB8C0CC);
   static const Color _cardColor = Colors.white;
   static const Color _dividerColor = Color(0xFFE7EBF3);
   static const Color _textPrimary = Color(0xFF1F2937);
@@ -246,8 +195,6 @@ class _CategoryAnalysisTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final total = data.totalCount;
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -307,7 +254,7 @@ class _CategoryAnalysisTile extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    '평균 ${_formatDuration(data.averageSolveSeconds)}',
+                    '평균 ${data.averageSolveSeconds}초',
                     style: const TextStyle(
                       color: _textPrimary,
                       fontSize: 14,
@@ -320,37 +267,10 @@ class _CategoryAnalysisTile extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           _RatioBar(
+            height: 12,
             correctCount: data.correctCount,
             wrongCount: data.wrongCount,
             unansweredCount: data.unansweredCount,
-            height: 12,
-            borderRadius: 999,
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Expanded(
-                child: _RatioInfo(
-                  color: _correctColor,
-                  label: '정답',
-                  value: '${_percent(data.correctCount, total)}%',
-                ),
-              ),
-              Expanded(
-                child: _RatioInfo(
-                  color: _wrongColor,
-                  label: '오답',
-                  value: '${_percent(data.wrongCount, total)}%',
-                ),
-              ),
-              Expanded(
-                child: _RatioInfo(
-                  color: _unansweredColor,
-                  label: '안 고름',
-                  value: '${_percent(data.unansweredCount, total)}%',
-                ),
-              ),
-            ],
           ),
         ],
       ),
@@ -359,142 +279,42 @@ class _CategoryAnalysisTile extends StatelessWidget {
 }
 
 class _RatioBar extends StatelessWidget {
+  final double height;
   final int correctCount;
   final int wrongCount;
   final int unansweredCount;
-  final double height;
-  final double borderRadius;
 
   const _RatioBar({
+    required this.height,
     required this.correctCount,
     required this.wrongCount,
     required this.unansweredCount,
-    required this.height,
-    required this.borderRadius,
   });
-
-  static const Color _correctColor = Color(0xFF2FBF71);
-  static const Color _wrongColor = Color(0xFFE85D75);
-  static const Color _unansweredColor = Color(0xFFB8C0CC);
-
-  @override
-  Widget build(BuildContext context) {
-    final total = correctCount + wrongCount + unansweredCount;
-
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
-      child: SizedBox(
-        height: height,
-        child: Row(
-          children: [
-            Expanded(
-              flex: total == 0 ? 1 : correctCount,
-              child: Container(color: _correctColor),
-            ),
-            Expanded(
-              flex: total == 0 ? 1 : wrongCount,
-              child: Container(color: _wrongColor),
-            ),
-            Expanded(
-              flex: total == 0 ? 1 : unansweredCount,
-              child: Container(color: _unansweredColor),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _LegendChip extends StatelessWidget {
-  final Color color;
-  final String label;
-
-  const _LegendChip({required this.color, required this.label});
-
-  static const Color _textPrimary = Color(0xFF1F2937);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF8FAFC),
-        borderRadius: BorderRadius.circular(999),
-      ),
+      width: double.infinity,
+      height: height,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          Container(
-            width: 8,
-            height: 8,
-            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+          Expanded(
+            flex: correctCount,
+            child: Container(color: Colors.green),
           ),
-          const SizedBox(width: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              color: _textPrimary,
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-            ),
+          Expanded(
+            flex: wrongCount,
+            child: Container(color: Colors.red),
+          ),
+          Expanded(
+            flex: unansweredCount,
+            child: Container(color: Colors.grey),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _RatioInfo extends StatelessWidget {
-  final Color color;
-  final String label;
-  final String value;
-
-  const _RatioInfo({
-    required this.color,
-    required this.label,
-    required this.value,
-  });
-
-  static const Color _textPrimary = Color(0xFF1F2937);
-  static const Color _textSecondary = Color(0xFF6B7280);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 8,
-          height: 8,
-          decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-        ),
-        const SizedBox(width: 6),
-        Flexible(
-          child: RichText(
-            overflow: TextOverflow.ellipsis,
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: '$label ',
-                  style: const TextStyle(
-                    color: _textSecondary,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                TextSpan(
-                  text: value,
-                  style: const TextStyle(
-                    color: _textPrimary,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
@@ -519,24 +339,4 @@ class _AnalysisCategoryData {
   });
 
   int get totalCount => correctCount + wrongCount + unansweredCount;
-}
-
-int _percent(int value, int total) {
-  if (total == 0) return 0;
-  return ((value / total) * 100).round();
-}
-
-String _formatDuration(int seconds) {
-  if (seconds < 60) {
-    return '$seconds초';
-  }
-
-  final minute = seconds ~/ 60;
-  final second = seconds % 60;
-
-  if (second == 0) {
-    return '$minute분';
-  }
-
-  return '$minute분 $second초';
 }

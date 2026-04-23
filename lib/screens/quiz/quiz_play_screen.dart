@@ -98,15 +98,13 @@ class _QuizPlayScreenState extends State<QuizPlayScreen> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  if (isLastQuiz) ...[
-                    AppTextButton(
-                      bgColor: Colors.black87,
-                      text: '제출하기',
-                      textColor: Colors.white,
-                      textWeight: FontWeight.w700,
-                      onPressed: _submitQuiz,
-                    ),
-                  ],
+                  AppTextButton(
+                    bgColor: Colors.black87,
+                    text: '제출하기',
+                    textColor: Colors.white,
+                    textWeight: FontWeight.w700,
+                    onPressed: _submitQuiz,
+                  ),
                   StreamBuilder<int>(
                     stream: _stopWatchTimer.rawTime,
                     initialData: 0,
