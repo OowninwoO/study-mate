@@ -9,6 +9,7 @@ abstract class QuizSetModel with _$QuizSetModel {
   const factory QuizSetModel({
     required String id,
     required String sourceTitle,
+    required String category,
     required List<QuizItemModel> quizzes,
     required DateTime createdAt,
   }) = _QuizSetModel;

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$QuizSetModel {
 
- String get id; String get sourceTitle; List<QuizItemModel> get quizzes; DateTime get createdAt;
+ String get id; String get sourceTitle; String get category; List<QuizItemModel> get quizzes; DateTime get createdAt;
 /// Create a copy of QuizSetModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $QuizSetModelCopyWith<QuizSetModel> get copyWith => _$QuizSetModelCopyWithImpl<Q
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is QuizSetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.sourceTitle, sourceTitle) || other.sourceTitle == sourceTitle)&&const DeepCollectionEquality().equals(other.quizzes, quizzes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is QuizSetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.sourceTitle, sourceTitle) || other.sourceTitle == sourceTitle)&&(identical(other.category, category) || other.category == category)&&const DeepCollectionEquality().equals(other.quizzes, quizzes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,sourceTitle,const DeepCollectionEquality().hash(quizzes),createdAt);
+int get hashCode => Object.hash(runtimeType,id,sourceTitle,category,const DeepCollectionEquality().hash(quizzes),createdAt);
 
 @override
 String toString() {
-  return 'QuizSetModel(id: $id, sourceTitle: $sourceTitle, quizzes: $quizzes, createdAt: $createdAt)';
+  return 'QuizSetModel(id: $id, sourceTitle: $sourceTitle, category: $category, quizzes: $quizzes, createdAt: $createdAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $QuizSetModelCopyWith<$Res>  {
   factory $QuizSetModelCopyWith(QuizSetModel value, $Res Function(QuizSetModel) _then) = _$QuizSetModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String sourceTitle, List<QuizItemModel> quizzes, DateTime createdAt
+ String id, String sourceTitle, String category, List<QuizItemModel> quizzes, DateTime createdAt
 });
 
 
@@ -65,10 +65,11 @@ class _$QuizSetModelCopyWithImpl<$Res>
 
 /// Create a copy of QuizSetModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? sourceTitle = null,Object? quizzes = null,Object? createdAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? sourceTitle = null,Object? category = null,Object? quizzes = null,Object? createdAt = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,sourceTitle: null == sourceTitle ? _self.sourceTitle : sourceTitle // ignore: cast_nullable_to_non_nullable
+as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as String,quizzes: null == quizzes ? _self.quizzes : quizzes // ignore: cast_nullable_to_non_nullable
 as List<QuizItemModel>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,
@@ -156,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String sourceTitle,  List<QuizItemModel> quizzes,  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String sourceTitle,  String category,  List<QuizItemModel> quizzes,  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _QuizSetModel() when $default != null:
-return $default(_that.id,_that.sourceTitle,_that.quizzes,_that.createdAt);case _:
+return $default(_that.id,_that.sourceTitle,_that.category,_that.quizzes,_that.createdAt);case _:
   return orElse();
 
 }
@@ -177,10 +178,10 @@ return $default(_that.id,_that.sourceTitle,_that.quizzes,_that.createdAt);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String sourceTitle,  List<QuizItemModel> quizzes,  DateTime createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String sourceTitle,  String category,  List<QuizItemModel> quizzes,  DateTime createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _QuizSetModel():
-return $default(_that.id,_that.sourceTitle,_that.quizzes,_that.createdAt);case _:
+return $default(_that.id,_that.sourceTitle,_that.category,_that.quizzes,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +198,10 @@ return $default(_that.id,_that.sourceTitle,_that.quizzes,_that.createdAt);case _
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String sourceTitle,  List<QuizItemModel> quizzes,  DateTime createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String sourceTitle,  String category,  List<QuizItemModel> quizzes,  DateTime createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _QuizSetModel() when $default != null:
-return $default(_that.id,_that.sourceTitle,_that.quizzes,_that.createdAt);case _:
+return $default(_that.id,_that.sourceTitle,_that.category,_that.quizzes,_that.createdAt);case _:
   return null;
 
 }
@@ -212,11 +213,12 @@ return $default(_that.id,_that.sourceTitle,_that.quizzes,_that.createdAt);case _
 @JsonSerializable()
 
 class _QuizSetModel implements QuizSetModel {
-  const _QuizSetModel({required this.id, required this.sourceTitle, required final  List<QuizItemModel> quizzes, required this.createdAt}): _quizzes = quizzes;
+  const _QuizSetModel({required this.id, required this.sourceTitle, required this.category, required final  List<QuizItemModel> quizzes, required this.createdAt}): _quizzes = quizzes;
   factory _QuizSetModel.fromJson(Map<String, dynamic> json) => _$QuizSetModelFromJson(json);
 
 @override final  String id;
 @override final  String sourceTitle;
+@override final  String category;
  final  List<QuizItemModel> _quizzes;
 @override List<QuizItemModel> get quizzes {
   if (_quizzes is EqualUnmodifiableListView) return _quizzes;
@@ -239,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _QuizSetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.sourceTitle, sourceTitle) || other.sourceTitle == sourceTitle)&&const DeepCollectionEquality().equals(other._quizzes, _quizzes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _QuizSetModel&&(identical(other.id, id) || other.id == id)&&(identical(other.sourceTitle, sourceTitle) || other.sourceTitle == sourceTitle)&&(identical(other.category, category) || other.category == category)&&const DeepCollectionEquality().equals(other._quizzes, _quizzes)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,sourceTitle,const DeepCollectionEquality().hash(_quizzes),createdAt);
+int get hashCode => Object.hash(runtimeType,id,sourceTitle,category,const DeepCollectionEquality().hash(_quizzes),createdAt);
 
 @override
 String toString() {
-  return 'QuizSetModel(id: $id, sourceTitle: $sourceTitle, quizzes: $quizzes, createdAt: $createdAt)';
+  return 'QuizSetModel(id: $id, sourceTitle: $sourceTitle, category: $category, quizzes: $quizzes, createdAt: $createdAt)';
 }
 
 
@@ -259,7 +261,7 @@ abstract mixin class _$QuizSetModelCopyWith<$Res> implements $QuizSetModelCopyWi
   factory _$QuizSetModelCopyWith(_QuizSetModel value, $Res Function(_QuizSetModel) _then) = __$QuizSetModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String sourceTitle, List<QuizItemModel> quizzes, DateTime createdAt
+ String id, String sourceTitle, String category, List<QuizItemModel> quizzes, DateTime createdAt
 });
 
 
@@ -276,10 +278,11 @@ class __$QuizSetModelCopyWithImpl<$Res>
 
 /// Create a copy of QuizSetModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? sourceTitle = null,Object? quizzes = null,Object? createdAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? sourceTitle = null,Object? category = null,Object? quizzes = null,Object? createdAt = null,}) {
   return _then(_QuizSetModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,sourceTitle: null == sourceTitle ? _self.sourceTitle : sourceTitle // ignore: cast_nullable_to_non_nullable
+as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as String,quizzes: null == quizzes ? _self._quizzes : quizzes // ignore: cast_nullable_to_non_nullable
 as List<QuizItemModel>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,
