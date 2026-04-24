@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_mate/screens/analysis/widgets/ratio_bar.dart';
 import 'package:study_mate/theme/app_colors.dart';
+import 'package:study_mate/widgets/buttons/app_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
 class AnalysisScreen extends StatelessWidget {
@@ -189,84 +190,49 @@ class _CategoryAnalysisTile extends StatelessWidget {
 
   const _CategoryAnalysisTile({required this.data});
 
-  static const Color _cardColor = Colors.white;
-  static const Color _dividerColor = Color(0xFFE7EBF3);
-  static const Color _textPrimary = Color(0xFF1F2937);
-  static const Color _textSecondary = Color(0xFF6B7280);
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: _cardColor,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: _dividerColor),
+        borderRadius: BorderRadius.circular(36),
+        border: Border.all(color: AppColors.divider),
+        color: Colors.white,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
+          AppTextButton(
+            width: double.infinity,
+            bgColor: Colors.black12,
+            text: data.name,
+            textColor: Colors.black,
+            textSize: 16,
+            textWeight: FontWeight.w700,
+          ),
+          const SizedBox(height: 12),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF1F3FF),
-                        borderRadius: BorderRadius.circular(999),
-                      ),
-                      child: Text(
-                        data.name,
-                        style: const TextStyle(
-                          color: _textPrimary,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '${data.setCount}세트 · ${data.questionCount}문제',
-                      style: const TextStyle(
-                        color: _textSecondary,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+              Text(
+                '${data.setCount}세트 · ${data.questionCount}문제',
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(width: 12),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.timer_outlined,
-                    size: 18,
-                    color: _textSecondary,
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    '평균 ${data.averageSolveSeconds}초',
-                    style: const TextStyle(
-                      color: _textPrimary,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
+              AppTextButton(
+                bgColor: Colors.black12,
+                text: '평균 ${data.averageSolveSeconds}초',
+                textColor: Colors.black,
+                textWeight: FontWeight.w700,
               ),
             ],
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 12),
           RatioBar(
             height: 12,
             correctCount: data.correctCount,
