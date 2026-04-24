@@ -73,7 +73,7 @@ class HomeScreen extends ConsumerWidget {
                           ),
                           title: quiz.sourceTitle,
                           subtitle:
-                              '${quiz.quizzes.length}문제 · ${DateTimeUtil.formatDateTime(quiz.createdAt)}',
+                              '${quiz.category} · ${quiz.quizzes.length}문제 · ${DateTimeUtil.formatDateTime(quiz.createdAt)}',
                           trailing: AppTextButton(
                             bgColor: Colors.black,
                             text: '풀기',
