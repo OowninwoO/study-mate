@@ -74,7 +74,7 @@ class AnalysisScreen extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             const Text(
               '카테고리별 정답 비율과 평균 풀이시간을 한눈에 볼 수 있어요.',
               style: TextStyle(
