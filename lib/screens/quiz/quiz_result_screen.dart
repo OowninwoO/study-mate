@@ -117,7 +117,11 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                   final result = results[index];
 
                   return AppTextButton(
-                    bgColor: result.isCorrect ? Colors.green : Colors.red,
+                    bgColor: result.selectedAnswer == null
+                        ? Colors.grey
+                        : result.isCorrect
+                        ? Colors.green
+                        : Colors.red,
                     text: '${index + 1}',
                     textColor: Colors.white,
                     textSize: 16,
