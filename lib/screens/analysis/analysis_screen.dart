@@ -37,6 +37,14 @@ class AnalysisScreen extends StatelessWidget {
       ),
     ];
 
+    final totalSetCount = categories.fold<int>(
+      0,
+      (sum, item) => sum + item.setCount,
+    );
+    final totalQuestionCount = categories.fold<int>(
+      0,
+      (sum, item) => sum + item.questionCount,
+    );
     final totalCorrect = categories.fold<int>(
       0,
       (sum, item) => sum + item.correctCount,
@@ -83,6 +91,8 @@ class AnalysisScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             AnalysisSummaryCard(
+              setCount: totalSetCount,
+              questionCount: totalQuestionCount,
               correctCount: totalCorrect,
               wrongCount: totalWrong,
               unansweredCount: totalUnanswered,

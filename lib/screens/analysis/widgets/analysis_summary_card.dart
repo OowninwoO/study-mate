@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:study_mate/screens/analysis/widgets/analysis_pie_chart.dart';
 import 'package:study_mate/theme/app_colors.dart';
+import 'package:study_mate/widgets/buttons/app_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
 
 class AnalysisSummaryCard extends StatelessWidget {
+  final int setCount;
+  final int questionCount;
   final int correctCount;
   final int wrongCount;
   final int unansweredCount;
@@ -11,6 +14,8 @@ class AnalysisSummaryCard extends StatelessWidget {
 
   const AnalysisSummaryCard({
     super.key,
+    required this.setCount,
+    required this.questionCount,
     required this.correctCount,
     required this.wrongCount,
     required this.unansweredCount,
@@ -31,13 +36,25 @@ class AnalysisSummaryCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            '전체 요약',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                '전체 요약',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              AppTextButton(
+                bgColor: Colors.black12,
+                text: '$setCount세트 · $questionCount문제',
+                textColor: Colors.black,
+                textWeight: FontWeight.w700,
+              ),
+            ],
           ),
           const SizedBox(height: 12),
           AnalysisPieChart(
