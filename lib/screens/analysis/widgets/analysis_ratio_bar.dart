@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class RatioBar extends StatelessWidget {
+class AnalysisRatioBar extends StatelessWidget {
   final double height;
   final int correctCount;
   final int wrongCount;
   final int unansweredCount;
 
-  const RatioBar({
+  const AnalysisRatioBar({
     super.key,
     required this.height,
     required this.correctCount,

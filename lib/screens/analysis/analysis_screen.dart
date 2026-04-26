@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:study_mate/screens/analysis/widgets/ratio_bar.dart';
+import 'package:study_mate/screens/analysis/widgets/analysis_ratio_bar.dart';
 import 'package:study_mate/theme/app_colors.dart';
 import 'package:study_mate/widgets/buttons/app_text_button.dart';
 import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
@@ -356,7 +356,7 @@ class _CategoryAnalysisTile extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          RatioBar(
+          AnalysisRatioBar(
             height: 12,
             correctCount: data.correctCount,
             wrongCount: data.wrongCount,
