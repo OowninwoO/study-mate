@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:study_mate/screens/analysis/widgets/analysis_category_card.dart';
 import 'package:study_mate/screens/analysis/widgets/analysis_summary_card.dart';
@@ -37,33 +38,16 @@ class AnalysisScreen extends StatelessWidget {
       ),
     ];
 
-    final totalSetCount = categories.fold<int>(
-      0,
-      (sum, item) => sum + item.setCount,
-    );
-    final totalQuestionCount = categories.fold<int>(
-      0,
-      (sum, item) => sum + item.questionCount,
-    );
-    final totalCorrect = categories.fold<int>(
-      0,
-      (sum, item) => sum + item.correctCount,
-    );
-    final totalWrong = categories.fold<int>(
-      0,
-      (sum, item) => sum + item.wrongCount,
-    );
-    final totalUnanswered = categories.fold<int>(
-      0,
-      (sum, item) => sum + item.unansweredCount,
-    );
+    final totalSetCount = categories.map((item) => item.setCount).sum;
+    final totalQuestionCount = categories.map((item) => item.questionCount).sum;
+    final totalCorrect = categories.map((item) => item.correctCount).sum;
+    final totalWrong = categories.map((item) => item.wrongCount).sum;
+    final totalUnanswered = categories.map((item) => item.unansweredCount).sum;
     final totalSolved = totalCorrect + totalWrong + totalUnanswered;
-    final weightedAverageSeconds =
-        categories.fold<int>(
-          0,
-          (sum, item) => sum + (item.averageSolveSeconds * item.totalCount),
-        ) ~/
-        totalSolved;
+    final totalSolveSeconds = categories
+        .map((item) => item.averageSolveSeconds * item.totalCount)
+        .sum;
+    final weightedAverageSeconds = (totalSolveSeconds / totalSolved).round();
 
     return SafeArea(
       child: SingleChildScrollView(
