@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:study_mate/screens/analysis/widgets/analysis_pie_chart.dart';
-import 'package:study_mate/screens/analysis/widgets/analysis_ratio_bar.dart';
-import 'package:study_mate/theme/app_colors.dart';
-import 'package:study_mate/widgets/buttons/app_text_button.dart';
-import 'package:study_mate/widgets/list_tiles/app_list_tile.dart';
+import 'package:study_mate/screens/analysis/widgets/analysis_category_card.dart';
+import 'package:study_mate/screens/analysis/widgets/analysis_summary_card.dart';
 
 class AnalysisScreen extends StatelessWidget {
   const AnalysisScreen({super.key});
@@ -85,7 +82,7 @@ class AnalysisScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            _SummaryCard(
+            AnalysisSummaryCard(
               correctCount: totalCorrect,
               wrongCount: totalWrong,
               unansweredCount: totalUnanswered,
@@ -109,137 +106,19 @@ class AnalysisScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final item = categories[index];
 
-                return _CategoryAnalysisTile(data: item);
+                return AnalysisCategoryCard(
+                  name: item.name,
+                  setCount: item.setCount,
+                  questionCount: item.questionCount,
+                  correctCount: item.correctCount,
+                  wrongCount: item.wrongCount,
+                  unansweredCount: item.unansweredCount,
+                  averageSolveSeconds: item.averageSolveSeconds,
+                );
               },
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _SummaryCard extends StatelessWidget {
-  final int correctCount;
-  final int wrongCount;
-  final int unansweredCount;
-  final int averageSolveSeconds;
-
-  const _SummaryCard({
-    required this.correctCount,
-    required this.wrongCount,
-    required this.unansweredCount,
-    required this.averageSolveSeconds,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(36),
-        border: Border.all(color: AppColors.divider),
-        color: Colors.white,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            '전체 요약',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 12),
-          AnalysisPieChart(
-            correctCount: correctCount,
-            wrongCount: wrongCount,
-            unansweredCount: unansweredCount,
-          ),
-          const SizedBox(height: 12),
-          AppListTile(
-            color: AppColors.primary,
-            leading: const Icon(Icons.timer_outlined, color: Colors.white),
-            title: '전체 평균 풀이시간',
-            titleTextStyle: const TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-            ),
-            trailing: Text(
-              '$averageSolveSeconds초',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _CategoryAnalysisTile extends StatelessWidget {
-  final _AnalysisCategoryData data;
-
-  const _CategoryAnalysisTile({required this.data});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(36),
-        border: Border.all(color: AppColors.divider),
-        color: Colors.white,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AppTextButton(
-            width: double.infinity,
-            bgColor: Colors.black12,
-            text: data.name,
-            textColor: Colors.black,
-            textSize: 16,
-            textWeight: FontWeight.w700,
-          ),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '${data.setCount}세트 · ${data.questionCount}문제',
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              AppTextButton(
-                bgColor: Colors.black12,
-                text: '평균 ${data.averageSolveSeconds}초',
-                textColor: Colors.black,
-                textWeight: FontWeight.w700,
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          AnalysisRatioBar(
-            height: 12,
-            correctCount: data.correctCount,
-            wrongCount: data.wrongCount,
-            unansweredCount: data.unansweredCount,
-          ),
-        ],
       ),
     );
   }
