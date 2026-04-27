@@ -19,7 +19,7 @@ class MainDioClient {
             onRequest: (options, handler) async {
               final token = await AuthService.idToken;
               if (token != null) {
-                options.headers['idToken'] = token;
+                options.headers['Authorization'] = 'Bearer $token';
               }
 
               final caller = options.extra['caller'] ?? 'unknown';
