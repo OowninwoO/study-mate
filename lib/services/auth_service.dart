@@ -5,11 +5,12 @@ class AuthService {
   static final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  static User? get currentUser => _firebaseAuth.currentUser;
+
   static Future<String?> get idToken async {
-    final currentUser = _firebaseAuth.currentUser;
     if (currentUser == null) return null;
 
-    return currentUser.getIdToken();
+    return currentUser!.getIdToken();
   }
 
   static Future<void> signInWithGoogle() async {
@@ -26,12 +27,11 @@ class AuthService {
   }
 
   static Future<void> signOut() async {
-    final currentUser = _firebaseAuth.currentUser;
     if (currentUser == null) return;
 
-    final providerId = currentUser.providerData.isEmpty
+    final providerId = currentUser!.providerData.isEmpty
         ? null
-        : currentUser.providerData.first.providerId;
+        : currentUser!.providerData.first.providerId;
 
     await _firebaseAuth.signOut();
 
@@ -39,6 +39,7 @@ class AuthService {
       case 'google.com':
         await _googleSignIn.signOut();
         break;
+
       default:
         break;
     }

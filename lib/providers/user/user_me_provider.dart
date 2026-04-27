@@ -17,6 +17,13 @@ class UserMeProvider extends StateNotifier<UserModel?> {
     state = UserModel.fromJson(res['data']);
   }
 
+  Future<void> autoLogin() async {
+    if (AuthService.currentUser == null) return;
+
+    final res = await UserApi.login();
+    state = UserModel.fromJson(res['data']);
+  }
+
   Future<void> signOut() async {
     await AuthService.signOut();
     state = null;
