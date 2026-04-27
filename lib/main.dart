@@ -17,15 +17,15 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MainApp()));
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ToastificationWrapper(
       child: GlobalLoaderOverlay(
         child: MaterialApp.router(
-          routerConfig: appRouter(),
+          routerConfig: appRouter(ref),
           theme: AppTheme.light,
         ),
       ),

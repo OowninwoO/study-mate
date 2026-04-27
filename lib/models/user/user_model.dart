@@ -7,13 +7,13 @@ part 'user_model.g.dart';
 abstract class UserModel with _$UserModel {
   const factory UserModel({
     required int id,
-    required String firebaseUid,
+    @JsonKey(name: 'firebase_uid') required String firebaseUid,
     String? provider,
     String? email,
-    String? displayName,
-    String? profileImageUrl,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @JsonKey(name: 'display_name') String? displayName,
+    @JsonKey(name: 'profile_image_url') String? profileImageUrl,
+    @JsonKey(name: 'created_at') required DateTime createdAt,
+    @JsonKey(name: 'updated_at') required DateTime updatedAt,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

@@ -8,23 +8,23 @@ part of 'user_model.dart';
 
 _UserModel _$UserModelFromJson(Map<String, dynamic> json) => _UserModel(
   id: (json['id'] as num).toInt(),
-  firebaseUid: json['firebaseUid'] as String,
+  firebaseUid: json['firebase_uid'] as String,
   provider: json['provider'] as String?,
   email: json['email'] as String?,
-  displayName: json['displayName'] as String?,
-  profileImageUrl: json['profileImageUrl'] as String?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  displayName: json['display_name'] as String?,
+  profileImageUrl: json['profile_image_url'] as String?,
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
 );
 
 Map<String, dynamic> _$UserModelToJson(_UserModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'firebaseUid': instance.firebaseUid,
+      'firebase_uid': instance.firebaseUid,
       'provider': instance.provider,
       'email': instance.email,
-      'displayName': instance.displayName,
-      'profileImageUrl': instance.profileImageUrl,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'display_name': instance.displayName,
+      'profile_image_url': instance.profileImageUrl,
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
     };

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-import 'package:study_mate/services/auth_service.dart';
+import 'package:study_mate/providers/user/user_me_provider.dart';
 import 'package:study_mate/utils/logger_util.dart';
 import 'package:study_mate/utils/toast_util.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -33,7 +34,7 @@ class LoginScreen extends StatelessWidget {
               context.loaderOverlay.show();
 
               try {
-                await AuthService.signInWithGoogle();
+                await ref.read(userMeProvider.notifier).signInWithGoogle();
                 ToastUtil.success('로그인에 성공했습니다.');
               } catch (e) {
                 LoggerUtil.e(e);

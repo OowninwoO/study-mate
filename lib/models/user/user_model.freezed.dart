@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserModel {
 
- int get id; String get firebaseUid; String? get provider; String? get email; String? get displayName; String? get profileImageUrl; DateTime get createdAt; DateTime get updatedAt;
+ int get id;@JsonKey(name: 'firebase_uid') String get firebaseUid; String? get provider; String? get email;@JsonKey(name: 'display_name') String? get displayName;@JsonKey(name: 'profile_image_url') String? get profileImageUrl;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime get updatedAt;
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserModelCopyWith<$Res>  {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String firebaseUid, String? provider, String? email, String? displayName, String? profileImageUrl, DateTime createdAt, DateTime updatedAt
+ int id,@JsonKey(name: 'firebase_uid') String firebaseUid, String? provider, String? email,@JsonKey(name: 'display_name') String? displayName,@JsonKey(name: 'profile_image_url') String? profileImageUrl,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt
 });
 
 
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firebaseUid,  String? provider,  String? email,  String? displayName,  String? profileImageUrl,  DateTime createdAt,  DateTime updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'firebase_uid')  String firebaseUid,  String? provider,  String? email, @JsonKey(name: 'display_name')  String? displayName, @JsonKey(name: 'profile_image_url')  String? profileImageUrl, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.displayName,_that.profileImageUrl,_that.createdAt,_that.updatedAt);case _:
@@ -181,7 +181,7 @@ return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.disp
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firebaseUid,  String? provider,  String? email,  String? displayName,  String? profileImageUrl,  DateTime createdAt,  DateTime updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'firebase_uid')  String firebaseUid,  String? provider,  String? email, @JsonKey(name: 'display_name')  String? displayName, @JsonKey(name: 'profile_image_url')  String? profileImageUrl, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _UserModel():
 return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.displayName,_that.profileImageUrl,_that.createdAt,_that.updatedAt);case _:
@@ -201,7 +201,7 @@ return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.disp
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firebaseUid,  String? provider,  String? email,  String? displayName,  String? profileImageUrl,  DateTime createdAt,  DateTime updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'firebase_uid')  String firebaseUid,  String? provider,  String? email, @JsonKey(name: 'display_name')  String? displayName, @JsonKey(name: 'profile_image_url')  String? profileImageUrl, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _UserModel() when $default != null:
 return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.displayName,_that.profileImageUrl,_that.createdAt,_that.updatedAt);case _:
@@ -216,17 +216,17 @@ return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.disp
 @JsonSerializable()
 
 class _UserModel implements UserModel {
-  const _UserModel({required this.id, required this.firebaseUid, this.provider, this.email, this.displayName, this.profileImageUrl, required this.createdAt, required this.updatedAt});
+  const _UserModel({required this.id, @JsonKey(name: 'firebase_uid') required this.firebaseUid, this.provider, this.email, @JsonKey(name: 'display_name') this.displayName, @JsonKey(name: 'profile_image_url') this.profileImageUrl, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt});
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
 @override final  int id;
-@override final  String firebaseUid;
+@override@JsonKey(name: 'firebase_uid') final  String firebaseUid;
 @override final  String? provider;
 @override final  String? email;
-@override final  String? displayName;
-@override final  String? profileImageUrl;
-@override final  DateTime createdAt;
-@override final  DateTime updatedAt;
+@override@JsonKey(name: 'display_name') final  String? displayName;
+@override@JsonKey(name: 'profile_image_url') final  String? profileImageUrl;
+@override@JsonKey(name: 'created_at') final  DateTime createdAt;
+@override@JsonKey(name: 'updated_at') final  DateTime updatedAt;
 
 /// Create a copy of UserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -261,7 +261,7 @@ abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Re
   factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String firebaseUid, String? provider, String? email, String? displayName, String? profileImageUrl, DateTime createdAt, DateTime updatedAt
+ int id,@JsonKey(name: 'firebase_uid') String firebaseUid, String? provider, String? email,@JsonKey(name: 'display_name') String? displayName,@JsonKey(name: 'profile_image_url') String? profileImageUrl,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt
 });
 
 
