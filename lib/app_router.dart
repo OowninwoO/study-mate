@@ -12,6 +12,7 @@ import 'package:study_mate/screens/profile/profile_screen.dart';
 import 'package:study_mate/screens/quiz/quiz_play_screen.dart';
 import 'package:study_mate/screens/quiz/quiz_result_screen.dart';
 import 'package:study_mate/screens/quiz/quiz_screen.dart';
+import 'package:study_mate/screens/splash_screen.dart';
 
 GoRouter appRouter(WidgetRef ref) {
   final routerNotifier = AppRouterNotifier(ref);
@@ -21,6 +22,10 @@ GoRouter appRouter(WidgetRef ref) {
     refreshListenable: routerNotifier,
     redirect: routerNotifier.redirect,
     routes: [
+      GoRoute(
+        path: '/splash',
+        builder: (context, state) => const SplashScreen(),
+      ),
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(
         path: '/quiz_play',
