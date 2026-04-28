@@ -3,11 +3,9 @@ import 'package:study_mate/api/main/user/user_api.dart';
 import 'package:study_mate/models/user/user_model.dart';
 import 'package:study_mate/services/auth_service.dart';
 
-final userMeProvider = StateNotifierProvider<UserMeProvider, UserModelBase>((
-  ref,
-) {
-  return UserMeProvider();
-});
+final userMeProvider = StateNotifierProvider<UserMeProvider, UserModelBase>(
+  (ref) => UserMeProvider(),
+);
 
 class UserMeProvider extends StateNotifier<UserModelBase> {
   UserMeProvider() : super(const UserLoadingModel());
@@ -35,10 +33,6 @@ class UserMeProvider extends StateNotifier<UserModelBase> {
 
   Future<void> signOut() async {
     await AuthService.signOut();
-    state = const UserNoneModel();
-  }
-
-  void clear() {
     state = const UserNoneModel();
   }
 }
