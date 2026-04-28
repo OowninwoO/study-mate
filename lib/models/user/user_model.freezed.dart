@@ -13,22 +13,22 @@ part of 'user_model.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$UserModel {
+mixin _$UserDetailModel {
 
  int get id;@JsonKey(name: 'firebase_uid') String get firebaseUid; String? get provider; String? get email;@JsonKey(name: 'display_name') String? get displayName;@JsonKey(name: 'profile_image_url') String? get profileImageUrl;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime get updatedAt;
-/// Create a copy of UserModel
+/// Create a copy of UserDetailModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$UserModelCopyWith<UserModel> get copyWith => _$UserModelCopyWithImpl<UserModel>(this as UserModel, _$identity);
+$UserDetailModelCopyWith<UserDetailModel> get copyWith => _$UserDetailModelCopyWithImpl<UserDetailModel>(this as UserDetailModel, _$identity);
 
-  /// Serializes this UserModel to a JSON map.
+  /// Serializes this UserDetailModel to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firebaseUid, firebaseUid) || other.firebaseUid == firebaseUid)&&(identical(other.provider, provider) || other.provider == provider)&&(identical(other.email, email) || other.email == email)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.profileImageUrl, profileImageUrl) || other.profileImageUrl == profileImageUrl)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firebaseUid, firebaseUid) || other.firebaseUid == firebaseUid)&&(identical(other.provider, provider) || other.provider == provider)&&(identical(other.email, email) || other.email == email)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.profileImageUrl, profileImageUrl) || other.profileImageUrl == profileImageUrl)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37,15 +37,15 @@ int get hashCode => Object.hash(runtimeType,id,firebaseUid,provider,email,displa
 
 @override
 String toString() {
-  return 'UserModel(id: $id, firebaseUid: $firebaseUid, provider: $provider, email: $email, displayName: $displayName, profileImageUrl: $profileImageUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'UserDetailModel(id: $id, firebaseUid: $firebaseUid, provider: $provider, email: $email, displayName: $displayName, profileImageUrl: $profileImageUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $UserModelCopyWith<$Res>  {
-  factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) _then) = _$UserModelCopyWithImpl;
+abstract mixin class $UserDetailModelCopyWith<$Res>  {
+  factory $UserDetailModelCopyWith(UserDetailModel value, $Res Function(UserDetailModel) _then) = _$UserDetailModelCopyWithImpl;
 @useResult
 $Res call({
  int id,@JsonKey(name: 'firebase_uid') String firebaseUid, String? provider, String? email,@JsonKey(name: 'display_name') String? displayName,@JsonKey(name: 'profile_image_url') String? profileImageUrl,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt
@@ -56,14 +56,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$UserModelCopyWithImpl<$Res>
-    implements $UserModelCopyWith<$Res> {
-  _$UserModelCopyWithImpl(this._self, this._then);
+class _$UserDetailModelCopyWithImpl<$Res>
+    implements $UserDetailModelCopyWith<$Res> {
+  _$UserDetailModelCopyWithImpl(this._self, this._then);
 
-  final UserModel _self;
-  final $Res Function(UserModel) _then;
+  final UserDetailModel _self;
+  final $Res Function(UserDetailModel) _then;
 
-/// Create a copy of UserModel
+/// Create a copy of UserDetailModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firebaseUid = null,Object? provider = freezed,Object? email = freezed,Object? displayName = freezed,Object? profileImageUrl = freezed,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_self.copyWith(
@@ -82,8 +82,8 @@ as DateTime,
 }
 
 
-/// Adds pattern-matching-related methods to [UserModel].
-extension UserModelPatterns on UserModel {
+/// Adds pattern-matching-related methods to [UserDetailModel].
+extension UserDetailModelPatterns on UserDetailModel {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -96,10 +96,10 @@ extension UserModelPatterns on UserModel {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserModel value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserDetailModel value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _UserModel() when $default != null:
+case _UserDetailModel() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -118,10 +118,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserModel value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserDetailModel value)  $default,){
 final _that = this;
 switch (_that) {
-case _UserModel():
+case _UserDetailModel():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -139,10 +139,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserModel value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserDetailModel value)?  $default,){
 final _that = this;
 switch (_that) {
-case _UserModel() when $default != null:
+case _UserDetailModel() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -162,7 +162,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'firebase_uid')  String firebaseUid,  String? provider,  String? email, @JsonKey(name: 'display_name')  String? displayName, @JsonKey(name: 'profile_image_url')  String? profileImageUrl, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _UserModel() when $default != null:
+case _UserDetailModel() when $default != null:
 return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.displayName,_that.profileImageUrl,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
@@ -183,7 +183,7 @@ return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.disp
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'firebase_uid')  String firebaseUid,  String? provider,  String? email, @JsonKey(name: 'display_name')  String? displayName, @JsonKey(name: 'profile_image_url')  String? profileImageUrl, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt)  $default,) {final _that = this;
 switch (_that) {
-case _UserModel():
+case _UserDetailModel():
 return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.displayName,_that.profileImageUrl,_that.createdAt,_that.updatedAt);case _:
   throw StateError('Unexpected subclass');
 
@@ -203,7 +203,7 @@ return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.disp
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'firebase_uid')  String firebaseUid,  String? provider,  String? email, @JsonKey(name: 'display_name')  String? displayName, @JsonKey(name: 'profile_image_url')  String? profileImageUrl, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt)?  $default,) {final _that = this;
 switch (_that) {
-case _UserModel() when $default != null:
+case _UserDetailModel() when $default != null:
 return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.displayName,_that.profileImageUrl,_that.createdAt,_that.updatedAt);case _:
   return null;
 
@@ -215,9 +215,9 @@ return $default(_that.id,_that.firebaseUid,_that.provider,_that.email,_that.disp
 /// @nodoc
 @JsonSerializable()
 
-class _UserModel implements UserModel {
-  const _UserModel({required this.id, @JsonKey(name: 'firebase_uid') required this.firebaseUid, this.provider, this.email, @JsonKey(name: 'display_name') this.displayName, @JsonKey(name: 'profile_image_url') this.profileImageUrl, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt});
-  factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+class _UserDetailModel extends UserDetailModel {
+  const _UserDetailModel({required this.id, @JsonKey(name: 'firebase_uid') required this.firebaseUid, this.provider, this.email, @JsonKey(name: 'display_name') this.displayName, @JsonKey(name: 'profile_image_url') this.profileImageUrl, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt}): super._();
+  factory _UserDetailModel.fromJson(Map<String, dynamic> json) => _$UserDetailModelFromJson(json);
 
 @override final  int id;
 @override@JsonKey(name: 'firebase_uid') final  String firebaseUid;
@@ -228,20 +228,20 @@ class _UserModel implements UserModel {
 @override@JsonKey(name: 'created_at') final  DateTime createdAt;
 @override@JsonKey(name: 'updated_at') final  DateTime updatedAt;
 
-/// Create a copy of UserModel
+/// Create a copy of UserDetailModel
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$UserModelCopyWith<_UserModel> get copyWith => __$UserModelCopyWithImpl<_UserModel>(this, _$identity);
+_$UserDetailModelCopyWith<_UserDetailModel> get copyWith => __$UserDetailModelCopyWithImpl<_UserDetailModel>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$UserModelToJson(this, );
+  return _$UserDetailModelToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firebaseUid, firebaseUid) || other.firebaseUid == firebaseUid)&&(identical(other.provider, provider) || other.provider == provider)&&(identical(other.email, email) || other.email == email)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.profileImageUrl, profileImageUrl) || other.profileImageUrl == profileImageUrl)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.firebaseUid, firebaseUid) || other.firebaseUid == firebaseUid)&&(identical(other.provider, provider) || other.provider == provider)&&(identical(other.email, email) || other.email == email)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.profileImageUrl, profileImageUrl) || other.profileImageUrl == profileImageUrl)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -250,15 +250,15 @@ int get hashCode => Object.hash(runtimeType,id,firebaseUid,provider,email,displa
 
 @override
 String toString() {
-  return 'UserModel(id: $id, firebaseUid: $firebaseUid, provider: $provider, email: $email, displayName: $displayName, profileImageUrl: $profileImageUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'UserDetailModel(id: $id, firebaseUid: $firebaseUid, provider: $provider, email: $email, displayName: $displayName, profileImageUrl: $profileImageUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
-  factory _$UserModelCopyWith(_UserModel value, $Res Function(_UserModel) _then) = __$UserModelCopyWithImpl;
+abstract mixin class _$UserDetailModelCopyWith<$Res> implements $UserDetailModelCopyWith<$Res> {
+  factory _$UserDetailModelCopyWith(_UserDetailModel value, $Res Function(_UserDetailModel) _then) = __$UserDetailModelCopyWithImpl;
 @override @useResult
 $Res call({
  int id,@JsonKey(name: 'firebase_uid') String firebaseUid, String? provider, String? email,@JsonKey(name: 'display_name') String? displayName,@JsonKey(name: 'profile_image_url') String? profileImageUrl,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt
@@ -269,17 +269,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$UserModelCopyWithImpl<$Res>
-    implements _$UserModelCopyWith<$Res> {
-  __$UserModelCopyWithImpl(this._self, this._then);
+class __$UserDetailModelCopyWithImpl<$Res>
+    implements _$UserDetailModelCopyWith<$Res> {
+  __$UserDetailModelCopyWithImpl(this._self, this._then);
 
-  final _UserModel _self;
-  final $Res Function(_UserModel) _then;
+  final _UserDetailModel _self;
+  final $Res Function(_UserDetailModel) _then;
 
-/// Create a copy of UserModel
+/// Create a copy of UserDetailModel
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firebaseUid = null,Object? provider = freezed,Object? email = freezed,Object? displayName = freezed,Object? profileImageUrl = freezed,Object? createdAt = null,Object? updatedAt = null,}) {
-  return _then(_UserModel(
+  return _then(_UserDetailModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,firebaseUid: null == firebaseUid ? _self.firebaseUid : firebaseUid // ignore: cast_nullable_to_non_nullable
 as String,provider: freezed == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable

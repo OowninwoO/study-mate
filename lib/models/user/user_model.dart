@@ -3,9 +3,23 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
+sealed class UserModelBase {
+  const UserModelBase();
+}
+
+class UserLoadingModel extends UserModelBase {
+  const UserLoadingModel();
+}
+
+class UserNoneModel extends UserModelBase {
+  const UserNoneModel();
+}
+
 @freezed
-abstract class UserModel with _$UserModel {
-  const factory UserModel({
+abstract class UserDetailModel extends UserModelBase with _$UserDetailModel {
+  const UserDetailModel._();
+
+  const factory UserDetailModel({
     required int id,
     @JsonKey(name: 'firebase_uid') required String firebaseUid,
     String? provider,
@@ -14,8 +28,8 @@ abstract class UserModel with _$UserModel {
     @JsonKey(name: 'profile_image_url') String? profileImageUrl,
     @JsonKey(name: 'created_at') required DateTime createdAt,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
-  }) = _UserModel;
+  }) = _UserDetailModel;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
+  factory UserDetailModel.fromJson(Map<String, dynamic> json) =>
+      _$UserDetailModelFromJson(json);
 }
