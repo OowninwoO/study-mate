@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/models/quiz/source/quiz_set_model.dart';
-import 'package:study_mate/models/user/user_model.dart';
 import 'package:study_mate/providers/user/user_me_provider.dart';
 import 'package:study_mate/screens/analysis/analysis_screen.dart';
 import 'package:study_mate/screens/auth/login_screen.dart';
@@ -108,18 +107,16 @@ class AppRouterNotifier extends ChangeNotifier {
     final isOnSplashScreen = currentLocation == '/splash';
     final isOnLoginScreen = currentLocation == '/login';
 
-    if (userState is UserLoadingModel) {
+    if (userState.isLoading) {
       return isOnSplashScreen ? null : '/splash';
     }
 
-    if (userState is UserNoneModel) {
+    if (userState.hasError || userState.value == null) {
       return isOnLoginScreen ? null : '/login';
     }
 
-    if (userState is UserDetailModel) {
-      if (isOnSplashScreen || isOnLoginScreen) {
-        return '/home';
-      }
+    if (isOnSplashScreen || isOnLoginScreen) {
+      return '/home';
     }
 
     return null;
