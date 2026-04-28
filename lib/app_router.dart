@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:study_mate/enums/quiz_mode.dart';
 import 'package:study_mate/models/quiz/source/quiz_set_model.dart';
+import 'package:study_mate/models/user/user_model.dart';
 import 'package:study_mate/providers/user/user_me_provider.dart';
 import 'package:study_mate/screens/analysis/analysis_screen.dart';
 import 'package:study_mate/screens/auth/login_screen.dart';
@@ -18,7 +19,7 @@ GoRouter appRouter(WidgetRef ref) {
   final routerNotifier = AppRouterNotifier(ref);
 
   return GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/splash',
     refreshListenable: routerNotifier,
     redirect: routerNotifier.redirect,
     routes: [
@@ -101,19 +102,24 @@ class AppRouterNotifier extends ChangeNotifier {
   }
 
   String? redirect(BuildContext context, GoRouterState state) {
-    final user = ref.read(userMeProvider);
+    final userState = ref.read(userMeProvider);
 
     final currentLocation = state.matchedLocation;
+    final isOnSplashScreen = currentLocation == '/splash';
     final isOnLoginScreen = currentLocation == '/login';
 
-    final isLoggedIn = user != null;
+    if (userState is UserLoadingModel) {
+      return isOnSplashScreen ? null : '/splash';
+    }
 
-    if (!isLoggedIn) {
+    if (userState is UserNoneModel) {
       return isOnLoginScreen ? null : '/login';
     }
 
-    if (isOnLoginScreen) {
-      return '/home';
+    if (userState is UserDetailModel) {
+      if (isOnSplashScreen || isOnLoginScreen) {
+        return '/home';
+      }
     }
 
     return null;
