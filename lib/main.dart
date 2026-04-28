@@ -14,7 +14,7 @@ Future<void> main() async {
   await dotenv.load(fileName: '.env');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(const ProviderScope(child: MainApp()));
+  runApp(ProviderScope(retry: (_, _) => null, child: const MainApp()));
 }
 
 class MainApp extends ConsumerWidget {
