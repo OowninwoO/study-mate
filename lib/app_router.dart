@@ -89,13 +89,11 @@ GoRouter appRouter(WidgetRef ref) {
 }
 
 class AppRouterNotifier extends ChangeNotifier {
-  AppRouterNotifier(this.ref) {
-    ref.listen(userMeProvider, (previous, next) {
-      notifyListeners();
-    });
-  }
-
   final WidgetRef ref;
+
+  AppRouterNotifier(this.ref) {
+    ref.listen(userMeProvider, (previous, next) => notifyListeners());
+  }
 
   String? redirect(BuildContext context, GoRouterState state) {
     final user = ref.read(userMeProvider);
