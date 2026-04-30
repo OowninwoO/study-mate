@@ -58,6 +58,12 @@ class ProfileScreen extends ConsumerWidget {
                 const SizedBox(height: 12),
                 _ProfileHeaderCard(name: userName, imageUrl: profileImageUrl),
                 const SizedBox(height: 24),
+                const _StudyStreakCard(
+                  streakDays: 7,
+                  bestStreakDays: 14,
+                  weeklyStudyDays: [true, true, false, true, true, true, true],
+                ),
+                const SizedBox(height: 24),
                 const Text(
                   '나의 학습 취향',
                   style: TextStyle(
@@ -133,6 +139,151 @@ class _ProfileHeaderCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _StudyStreakCard extends StatelessWidget {
+  final int streakDays;
+  final int bestStreakDays;
+  final List<bool> weeklyStudyDays;
+
+  const _StudyStreakCard({
+    required this.streakDays,
+    required this.bestStreakDays,
+    required this.weeklyStudyDays,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const weekLabels = ['월', '화', '수', '목', '금', '토', '일'];
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(36),
+        border: Border.all(color: AppColors.divider),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _IconBadge(
+                icon: Icons.local_fire_department_rounded,
+                color: AppColors.secondary,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '연속 학습',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '$streakDays일째 이어가는 중입니다',
+                      style: const TextStyle(
+                        color: Colors.black54,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                '$streakDays일',
+                style: const TextStyle(
+                  color: AppColors.primary,
+                  fontSize: 34,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Text(
+                  '최고 기록 $bestStreakDays일',
+                  style: const TextStyle(
+                    color: Colors.black54,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 18),
+          Row(
+            children: [
+              for (var i = 0; i < weekLabels.length; i++) ...[
+                Expanded(
+                  child: _WeekDayBadge(
+                    label: weekLabels[i],
+                    isActive: weeklyStudyDays.length > i
+                        ? weeklyStudyDays[i]
+                        : false,
+                  ),
+                ),
+                if (i != weekLabels.length - 1) const SizedBox(width: 6),
+              ],
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _WeekDayBadge extends StatelessWidget {
+  final String label;
+  final bool isActive;
+
+  const _WeekDayBadge({required this.label, required this.isActive});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 36,
+          decoration: BoxDecoration(
+            color: isActive ? AppColors.primary : AppColors.scaffoldBackground,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(
+            isActive ? Icons.check_rounded : Icons.remove_rounded,
+            color: isActive ? Colors.white : Colors.black26,
+            size: 18,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          label,
+          style: const TextStyle(
+            color: Colors.black54,
+            fontSize: 12,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ],
     );
   }
 }
